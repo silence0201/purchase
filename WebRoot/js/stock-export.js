@@ -34,6 +34,7 @@
                 	price.value = s[1] ;
                 	number.value = s[2] ;
                 	account.value = s[3] ;
+                	requestManID.value = s[4] ;
                 }
                 
                }
@@ -53,6 +54,7 @@
        function setInfo()
        {
     	   var requestID = document.getElementById("requestID") ;
+    	   var requestManID = document.getElementById("requestManID") ;
     	   var itemID = document.getElementById("itemID") ;
     	   var price = document.getElementById("price") ;
     	   var number = document.getElementById("number") ;

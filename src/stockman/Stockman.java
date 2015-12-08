@@ -78,7 +78,8 @@ public class Stockman {
 		String sql = "select `ImportID`,`import`.`OrderID`,`Itemname`,`Number`,`Importtime` "
 				+ "from `import` ,`order`, `demand` ,`item` "
 				+ "where `import`.`OrderID` = `order`.`OrderID` AND `order`.`DemandID` = `demand`.`DemandID` "
-				+ "AND `demand`.`ItemID` = `item`.`ItemID` AND `StockmanID` = '"+userID+"'" ;
+				+ "AND `demand`.`ItemID` = `item`.`ItemID` AND `StockmanID` = '"+userID+"'"
+						+ " order by 'Importtime' DESC" ;
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){

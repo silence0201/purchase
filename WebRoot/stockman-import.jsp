@@ -15,11 +15,9 @@ String userName = (String)session.getAttribute("userName") ;
 %>
 
 <jsp:useBean id="stockman" class="stockman.Stockman"></jsp:useBean>
-<jsp:useBean id="addImport" class="stockman.AddImport"></jsp:useBean>
 <%
 	String userID = (String)session.getAttribute("userID");
 	stockman.setUserID(userID) ;
-	addImport.setUserID(userID);
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -63,7 +61,7 @@ String userName = (String)session.getAttribute("userName") ;
 		</div>
 		<div class="web_palce">
 			<article class="place">
-				<a   class="user_status" href="#">库管员</a>
+				<a   class="user_status" href="stockman-status.jsp">库管员</a>
 				<div class="place_driver"></div>
 				<a  class="current" href="#">入库登记</a>	
 			</article>
@@ -94,16 +92,16 @@ String userName = (String)session.getAttribute("userName") ;
 				<h3>入库登记</h3>
 				<div class="form">
 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					请输入出库单的详细信息</h3>
+					请输入入库单的详细信息</h3>
 					<br />
 					<hr />
-					<form action="">
+					<form action="AddImport">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="orderID">订单ID &nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" id="orderID" name="orderID" onchange="setInfo()">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="userID">审核人ID&nbsp;&nbsp;</label>
-						<input type="text" id="userID" name="userID">
+						<input type="text" id="orderManId" name="orderManId" readonly="readonly">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -138,17 +136,6 @@ String userName = (String)session.getAttribute("userName") ;
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<input type="reset" value="清空">
 					</form>
-<%-- 					<%
-						addImport.setItemID("A001") ;
-						addImport.setOrderID(100002);
-						addImport.setNumber(20);
-						Date dnow = new Date(); 
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-						String dtime="";				
-						dtime=sdf.format(dnow);
-						addImport.setImportTime(dtime);
-						addImport.setImportSql();
-					%> --%>
 				</div>
 			</header>
 		</div>

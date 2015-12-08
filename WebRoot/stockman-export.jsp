@@ -16,11 +16,9 @@ String userName = (String)session.getAttribute("userName") ;
 %>
 
 <jsp:useBean id="stockman" class="stockman.Stockman"></jsp:useBean>
-<jsp:useBean id="addExport" class="stockman.AddExport"></jsp:useBean>
 <%
 	String userID = (String)session.getAttribute("userID");
 	stockman.setUserID(userID) ;
-	addExport.setUserID(userID);
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -64,7 +62,7 @@ String userName = (String)session.getAttribute("userName") ;
 		</div>
 		<div class="web_palce">
 			<article class="place">
-				<a   class="user_status" href="#">库管员</a>
+				<a   class="user_status" href="stockman-status.jsp">库管员</a>
 				<div class="place_driver"></div>
 				<a  class="current" href="doQuit.jsp">出库登记</a>	
 			</article>
@@ -95,16 +93,16 @@ String userName = (String)session.getAttribute("userName") ;
 				<h3>出库登记</h3>
 				<div class="form">
 					<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					请输入入库单的详细信息</h3>
+					请输入出库单的详细信息</h3>
 					<br />
 					<hr />
-					<form action="">
+					<form action="AddExport">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="requestID">申请单ID :&nbsp;&nbsp;</label>
 						<input type="text" id="requestID" name="requestID" onchange="setInfo()">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="requestManID">审核人ID :</label>
-						<input type="text" id="requestManID" name="requestManID">
+						<label for="requestManID">申请人ID :</label>
+						<input type="text" id="requestManID" name="requestManID" readonly="readonly">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -140,17 +138,6 @@ String userName = (String)session.getAttribute("userName") ;
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<input type="reset" value="清空">
 					</form>
-<%-- 					<%
-						addExport.setItemID("A001") ;
-						addExport.setRequestID(100002);
-						addExport.setNumber(20);
-						Date dnow = new Date(); 
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-						String dtime="";				
-						dtime=sdf.format(dnow);
-						addExport.setExportTime(dtime);
-						addExport.setImportSql();
-					%> --%>
 				</div>
 			</header>
 		</div>
@@ -164,40 +151,6 @@ String userName = (String)session.getAttribute("userName") ;
 		<div id="side_div2">
 			 <header id="curImport">
 			 	<h3>最近出库</h3>
-			 	<%-- <table class="table table-striped table-hover table-bordered" style="font-size: 0.85em;">
-			 		<thead>
-			 			<tr>
-			 				<td>出库库单号</td>
-			 				<td>申请单号</td>
-			 				<td>物品</td>
-			 				<td>数量</td>
-			 				<td>申请人</td>
-			 				<td>时间</td>
-			 			</tr>
-			 		</thead>
-			 		
-			 		<tbody>
-			 				<%
-			 					stockman.setExport() ;
-			 					ArrayList<Export> exports = stockman.getExport() ;
-						 		
-						 		Iterator<Export> exportIterator = exports.iterator() ;
-						 		
-						 		while(exportIterator.hasNext()){
-						 			out.print("<tr>") ;
-						 			Export export1 = exportIterator.next() ;
-						 			out.print("<td>"+export1.getExportID()+"</td>");
-						 			out.print("<td>"+export1.getRequestID()+"</td>");
-						 			out.print("<td>"+export1.getItemName()+"</td>");
-						 			out.print("<td>"+export1.getNumber()+"</td>");
-						 			out.print("<td>"+export1.getRequestUserName()+"</td>");
-						 			out.print("<td>"+export1.getExportTime()+"</td>");
-						 			out.print("</tr>") ;
-						 		}
-						 		
-			 				 %>
-			 		</tbody>
-			 	</table> --%>
 			 </header>
 			 
 			 <table class="table table-striped table-hover table-bordered" style="font-size: 0.85em;">

@@ -33,7 +33,7 @@ public class GetInfoByOrderID extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String output = "";
 		String orderID = request.getParameter("orderID") ;
-		String sql = "SELECT `demand`.`ItemID`,`demand`.`Number`,`demand`.`Account`,`item`.`Unitprice` "
+		String sql = "SELECT `demand`.`ItemID`,`demand`.`Number`,`demand`.`Account`,`item`.`Unitprice`,`order`.`orderManID`"
 				+ "FROM `order`,`demand`,`item` WHERE `order`.`DemandID` = `demand`.`DemandID` "
 				+ "AND `demand`.`ItemID` = `item`.`ItemID` AND `order`.`OrderID` = '"+orderID+"' " ;
 		ResultSet rs = null;
@@ -42,6 +42,7 @@ public class GetInfoByOrderID extends HttpServlet {
 		int number = 0 ;
 		double account = 0 ;
 		String s = "0" ;
+		String orderManID = "" ;
 		try {
 			rs = db.select(sql) ;
 		} catch (Exception e) {
@@ -54,7 +55,8 @@ public class GetInfoByOrderID extends HttpServlet {
 				price = rs.getDouble(4) ;
 				number = rs.getInt(2) ;
 				account = rs.getDouble(3) ;
-				s=itemID+","+price+","+number+","+account ;
+				orderManID = rs.getString(5) ;
+				s=itemID+","+price+","+number+","+account+","+orderManID ;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

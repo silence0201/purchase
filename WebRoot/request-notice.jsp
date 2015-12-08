@@ -59,7 +59,7 @@ String userName = (String)session.getAttribute("userName") ;
 		</div>
 		<div class="web_palce">
 			<article class="place">
-				<a   class="user_status" href="#">需求部门</a>
+				<a   class="user_status" href="request-notice.jsp">需求部门</a>
 				<div class="place_driver"></div>
 				<a  class="current" href="#">待办事项</a>	
 			</article>

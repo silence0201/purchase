@@ -34,7 +34,7 @@ public class GetInfoByRequestID extends HttpServlet {
 				String output = "0";
 				//处理接收到的参数，生成响应的XML文档
 				String requestID = request.getParameter("requestID") ;
-				String sql = "SELECT `request`.`ItemID`,`item`.`Unitprice`,`request`.`Number`,`request`.`Totalaccount` "
+				String sql = "SELECT `request`.`ItemID`,`item`.`Unitprice`,`request`.`Number`,`request`.`Totalaccount` , `request`.`RequestmanID`"
 						+ "FROM `request`,`item` "
 						+ "WHERE `item`.`ItemID` = `request`.`ItemID` AND `request`.`RequestID` = '"+requestID+"' " ;
 				ResultSet rs = null;
@@ -43,6 +43,7 @@ public class GetInfoByRequestID extends HttpServlet {
 				int number = 0 ;
 				double account = 0 ;
 				String s = "0" ;
+				String requestmanID = "" ;
 				try {
 					rs = db.select(sql) ;
 				} catch (Exception e) {
@@ -55,7 +56,8 @@ public class GetInfoByRequestID extends HttpServlet {
 						price = rs.getDouble(2) ;
 						number = rs.getInt(3) ;
 						account = rs.getDouble(4) ;
-						s=itemID+","+price+","+number+","+account ;
+						requestmanID = rs.getString(5) ;
+						s=itemID+","+price+","+number+","+account +","+requestmanID;
 					}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
