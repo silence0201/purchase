@@ -39,7 +39,7 @@ public class Purchase {
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){
-			String requestID = rs.getString(1) ;  //申请ID
+			int requestID = rs.getInt(1) ;  //申请ID
 			String itemName = rs.getString(2) ;  //物品的名称
 			int count = rs.getInt(3); //物品的数量
 			double price = rs.getDouble(4);   //物品的价格
@@ -62,7 +62,7 @@ public class Purchase {
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){
-			String orderID = rs.getString(1) ;
+			int orderID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			double utilPrice = rs.getDouble(4) ;

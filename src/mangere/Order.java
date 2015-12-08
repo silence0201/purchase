@@ -3,7 +3,7 @@ package mangere;
 //总经理对订单的查看
 public class Order {
 	//订单的基本信息
-	private String orderID;   //订单的ID
+	private int orderID;   //订单的ID
 	private String itemName;  //  订单物品的名称
 	private int number;   //订单物品的数量
 	private double account;  // 订单的总额
@@ -11,7 +11,7 @@ public class Order {
 	private String orderStatement;  // 订单的状态
 	
 	//含参数的构造函数
-	public Order(String orderID, String itemName, int number, double account,
+	public Order(int orderID, String itemName, int number, double account,
 			String orderTime, String orderStatement) {
 		super();
 		this.orderID = orderID;
@@ -28,11 +28,11 @@ public class Order {
 	}
 
 	//getter和setter方法
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 

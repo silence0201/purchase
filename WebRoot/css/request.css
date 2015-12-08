@@ -262,7 +262,19 @@ section #main{
 	border-radius: 5px;
 	background: #ffffff;
 }
+input[type=submit],input[type=reset]{
+	width: 100px;
+}
+.form h3{
+	text-align: center; 
+}
 
+.form{
+	/* border:1px black dotted ; */
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+}
 #side_div1{
 	margin: 5px;
 	float: left;

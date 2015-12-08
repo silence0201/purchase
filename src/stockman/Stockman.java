@@ -61,7 +61,7 @@ public class Stockman {
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){
-			String ID = rs.getString(1) ;
+			int ID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			String time = rs.getString(4) ;
@@ -82,8 +82,8 @@ public class Stockman {
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){
-			String importID = rs.getString(1) ;
-			String orderID = rs.getString(2) ;
+			int importID = rs.getInt(1) ;
+			int orderID = rs.getInt(2) ;
 			String itemName = rs.getString(3) ;
 			int number = rs.getInt(4) ;
 			String importTime = rs.getString(5) ;
@@ -105,8 +105,8 @@ public class Stockman {
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){
-			String exportID = rs.getString(1) ;
-			String requestID = rs.getString(2) ;
+			int exportID = rs.getInt(1) ;
+			int requestID = rs.getInt(2) ;
 			String itemName = rs.getString(3) ;
 			int number = rs.getInt(4) ;
 			String requestUserName = rs.getString(5) ;

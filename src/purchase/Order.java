@@ -3,7 +3,7 @@ package purchase;
 //记录订单信息
 public class Order {
 	//基本属性
-	private String orderID ;   //订单号
+	private int orderID ;   //订单号
  	private String itemName ; //商品的名称
  	private int number ;  //商品的数量
  	private double unitPrice ;   //商品单价
@@ -12,7 +12,7 @@ public class Order {
  	private String status ; //商品的状态
  	
  	//构造方法
-	public Order(String orderID, String itemName, int number, double unitPrice,
+	public Order(int orderID, String itemName, int number, double unitPrice,
 			double account, String orderTime, String status) {
 		super();
 		this.orderID = orderID;
@@ -29,11 +29,11 @@ public class Order {
 	}
 
 	//getter和setter方法
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 
@@ -95,7 +95,7 @@ public class Order {
 		result = prime * result
 				+ ((itemName == null) ? 0 : itemName.hashCode());
 		result = prime * result + number;
-		result = prime * result + ((orderID == null) ? 0 : orderID.hashCode());
+		result = prime * result + orderID;
 		result = prime * result
 				+ ((orderTime == null) ? 0 : orderTime.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -123,10 +123,7 @@ public class Order {
 			return false;
 		if (number != other.number)
 			return false;
-		if (orderID == null) {
-			if (other.orderID != null)
-				return false;
-		} else if (!orderID.equals(other.orderID))
+		if (orderID != other.orderID)
 			return false;
 		if (orderTime == null) {
 			if (other.orderTime != null)
@@ -143,9 +140,6 @@ public class Order {
 			return false;
 		return true;
 	}
-	
-	
- 	
-	
- 	
+
+
 }

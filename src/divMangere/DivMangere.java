@@ -54,7 +54,7 @@ public class DivMangere {
 				+ "order by `Audittime` desc" ;
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
-			String requestID = rs.getString(1) ;
+			int requestID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			double account = rs.getDouble(4) ;
@@ -78,7 +78,7 @@ public class DivMangere {
 				+ "AND `user`.`Position` like '"+position+"%' " ;
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
-			String requestID = rs.getString(1) ;
+			int requestID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			double account = rs.getDouble(4) ;
@@ -105,7 +105,7 @@ public class DivMangere {
 				+"order by `Audittime` desc" ; 
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
-			String requestID = rs.getString(1) ;
+			int requestID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			double account = rs.getDouble(4) ;

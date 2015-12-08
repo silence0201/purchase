@@ -1,4 +1,5 @@
 <%@page import="stockman.Import"%>
+<%@page import="java.text.SimpleDateFormat"%> 
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
@@ -14,9 +15,11 @@ String userName = (String)session.getAttribute("userName") ;
 %>
 
 <jsp:useBean id="stockman" class="stockman.Stockman"></jsp:useBean>
+<jsp:useBean id="addImport" class="stockman.AddImport"></jsp:useBean>
 <%
 	String userID = (String)session.getAttribute("userID");
 	stockman.setUserID(userID) ;
+	addImport.setUserID(userID);
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -30,6 +33,7 @@ String userName = (String)session.getAttribute("userName") ;
 	<link rel="stylesheet" type="text/css" href="css/stockman.css">
 	
 	<script type="text/javascript" src="js/CookieUtil.js"></script>
+	<script type="text/javascript" src="js/stock-import.js"></script>
 	<script type="text/javascript">
 		var quit = function(){
 			CookieUtil.unset("userID") ;
@@ -95,29 +99,29 @@ String userName = (String)session.getAttribute("userName") ;
 					<hr />
 					<form action="">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="itemID">商品ID &nbsp;&nbsp;&nbsp;&nbsp;:</label>
-						<input type="text" id="itemID">
+						<label for="orderID">订单ID &nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" id="orderID" name="orderID" onchange="setInfo()">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="number">商品单价：</label>
-						<input type="text" id="price">
+						<label for="userID">审核人ID&nbsp;&nbsp;</label>
+						<input type="text" id="userID" name="userID">
+						<br />
+						<br />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="itemID">商品ID &nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" id="itemID" name="itemID" readonly="readonly">
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="price">商品单价&nbsp;&nbsp;</label>
+						<input type="text" id="price" name="price" readonly="readonly">
 						
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="Count">出库数量 :</label>
-						<input type="text" id="Count">
+						<label for="number">出库数量&nbsp;&nbsp;</label>
+						<input type="text" id="number" name="number" onchange="setAccount()" readonly="readonly">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="Account">总金额 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" id="Account">
+						<label for="account">总金额 &nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" id="account" name="account" readonly="readonly">
 						
-						<br />
-						<br />
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="userID">审核人ID :</label>
-						<input type="text" id="userID">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="OrderID">订单ID :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" id="OrderID">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -134,6 +138,17 @@ String userName = (String)session.getAttribute("userName") ;
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<input type="reset" value="清空">
 					</form>
+<%-- 					<%
+						addImport.setItemID("A001") ;
+						addImport.setOrderID(100002);
+						addImport.setNumber(20);
+						Date dnow = new Date(); 
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+						String dtime="";				
+						dtime=sdf.format(dnow);
+						addImport.setImportTime(dtime);
+						addImport.setImportSql();
+					%> --%>
 				</div>
 			</header>
 		</div>

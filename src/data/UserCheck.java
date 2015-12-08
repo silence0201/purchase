@@ -42,26 +42,6 @@ public class UserCheck extends HttpServlet {
 					String Position=rs.getString("Position");
 					if(name.equals(userID)&&password.equals(passWord)){
 						output ="<response>登录成功</response>";
-//						HttpSession se =  request.getSession();
-//				 		se.setAttribute("userID",userID);
-//				 		se.setAttribute("passWord",passWord);
-//				 		
-//				 		//跳转判定
-//				 		if(userID.startsWith("M")) {
-//				 			response.sendRedirect("mangere-notice.jsp");
-//				 		}
-//				 		if(userID.startsWith("D")){
-//				 			response.sendRedirect("divMangere-notice.jsp");
-//				 		}
-//				 		if(userID.startsWith("P")){
-//				 			response.sendRedirect("purchase-notice.jsp");
-//				 		}
-//				 		if(userID.startsWith("R")){
-//				 			response.sendRedirect("request-notice.jsp");
-//				 		}
-//				 		if(userID.startsWith("S")){
-//				 			response.sendRedirect("stockman-status.jsp");
-//				 		}
 					}else{
 						output ="<response>用户名或者密码错误。</response>";
 					}

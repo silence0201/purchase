@@ -3,7 +3,7 @@ package request;
 public class Request {
 	//订单的基本信息
 	//基本的需求申请单的信息
-		private String requestID;    //申请单的ID号
+		private int requestID;    //申请单的ID号
 		private String itemName;   //所申请的物品名称
 		private int number;    // 所申请物品的数量
 		private double account;   // 所申请物品的总金额
@@ -13,7 +13,7 @@ public class Request {
 		
 		//构造函数
 		
-		public Request(String requestID, String itemName, int number,
+		public Request(int requestID, String itemName, int number,
 				double account, String requestTime, String requestManName,
 				 String requestStatement) {
 			super();
@@ -25,7 +25,7 @@ public class Request {
 			this.requestManName = requestManName;
 			this.requestStatement = requestStatement;
 		}
-		public Request(String requestID, String itemName, int number,
+		public Request(int requestID, String itemName, int number,
 				String requestStatement) {
 			super();
 			this.requestID = requestID;
@@ -38,10 +38,10 @@ public class Request {
 		}
 		
 		//getter 和 setter 方法
-		public String getRequestID() {
+		public int getRequestID() {
 			return requestID;
 		}
-		public void setRequestID(String requestID) {
+		public void setRequestID(int requestID) {
 			this.requestID = requestID;
 		}
 		public String getItemName() {

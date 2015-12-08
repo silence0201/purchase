@@ -2,13 +2,13 @@ package stockman;
 //最近审批记录条
 public class Examine {
 	//基本的数据量
-	private String ID ;   //入库单货出库单ID
+	private int ID ;   //入库单货出库单ID
 	private String itemName ;  //货品名称
 	private int number ;   //  数量  正代表入库 负表示出库
 	private String time  ;  //出库或入库时间
 	
 	//构造函数
-	public Examine(String iD, String itemName, int number, String time) {
+	public Examine(int iD, String itemName, int number, String time) {
 		super();
 		ID = iD;
 		this.itemName = itemName;
@@ -21,11 +21,11 @@ public class Examine {
 	}
 
 	//getter 和 setter 方法
-	public String getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(String iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 

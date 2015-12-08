@@ -1,19 +1,22 @@
 package stockman;
+
+
 //记录入库信息
-public class Import {
+public class Import {	
 	//基本的数据信息
-	private String importID ;   //入库单ID
-	private String orderID ;   // 订单ID
+	private int importID ;   //入库单ID
+	private int orderID ;   // 订单ID
 	private String itemName ; //货品名称
 	private int number ;     //商品的数量
 	private String importTime ; // 导入的时间
-
+	
+	
 	//构造函数
 	public Import() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Import(String importID, String orderID, String itemName, int number,
+	public Import(int importID, int orderID, String itemName, int number,
 			String importTime) {
 		super();
 		this.importID = importID;
@@ -24,16 +27,16 @@ public class Import {
 	}
 	
 	//getter 和 setter方法
-	public String getImportID() {
+	public int getImportID() {
 		return importID;
 	}
-	public void setImportID(String importID) {
+	public void setImportID(int importID) {
 		this.importID = importID;
 	}
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 	public String getItemName() {
@@ -54,9 +57,5 @@ public class Import {
 	public void setImportTime(String importTime) {
 		this.importTime = importTime;
 	}
-	
-	
-	
-	
 	
 }

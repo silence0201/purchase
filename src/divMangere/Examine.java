@@ -3,7 +3,7 @@ package divMangere;
 //这是对本部门申请订单申请情况统计变量
 public class Examine {
 	//基本的数据信息
-	private String requestID ;  //订单ID
+	private int requestID ;  //订单ID
 	private String itemName ;  //商品名称
 	private int  number ; //商品数量
 	private double account ; //商品的金额
@@ -14,7 +14,7 @@ public class Examine {
 	private String auditTime ;  //审核的时间
 	
 	//构造方法
-	public Examine(String requestID, String itemName, int number,
+	public Examine(int requestID, String itemName, int number,
 			double account, String requestName, String requestTime,
 			String requestStatus, String auditorName, String auditTime) {
 		super();
@@ -34,11 +34,11 @@ public class Examine {
 	}
 
 	//gettet 和 setter 方法
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
 
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 

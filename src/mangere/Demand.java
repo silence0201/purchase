@@ -3,7 +3,7 @@ package mangere;
 //这个类主要记录需求单的ID
 public class Demand {
 	//需求单的基本属性
-	private String demandID;   //需求单ID
+	private int demandID;   //需求单ID
 	private String itemName;   //物品名称
 	private int number;       //物品数量
 	private double account;    //物品总金额
@@ -11,7 +11,7 @@ public class Demand {
 	private String demandTime;   //申请单生成时间
 	
 	//构造函数
-	public Demand(String demandID, String itemName, int number, double account,
+	public Demand(int demandID, String itemName, int number, double account,
 			String statement, String demandTime) {
 		super();
 		this.demandID = demandID;
@@ -25,11 +25,11 @@ public class Demand {
 	public Demand() {
 	}
 
-	public String getDemandID() {
+	public int getDemandID() {
 		return demandID;
 	}
 
-	public void setDemandID(String demandID) {
+	public void setDemandID(int demandID) {
 		this.demandID = demandID;
 	}
 

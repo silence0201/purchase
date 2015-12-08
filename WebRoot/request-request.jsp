@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
+<%@page import="java.text.SimpleDateFormat"%> 
+<%@page import="data.DataTool"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,7 +14,6 @@ String userName = (String)session.getAttribute("userName") ;
 %>
 
 
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -24,6 +25,7 @@ String userName = (String)session.getAttribute("userName") ;
 	<link rel="stylesheet" type="text/css" href="css/request.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="js/CookieUtil.js"></script>
+	<script type="text/javascript" src="js/price.js"></script>
 	<script type="text/javascript">
 		var quit = function(){
 			CookieUtil.unset("userID") ;
@@ -74,7 +76,7 @@ String userName = (String)session.getAttribute("userName") ;
 		<footer>
 			<hr />
 			<p>Copyright &copy; 2015 Silence</p>
-			<p>Design by <a href="http://www.medialoot.com">Silence</a></p>
+			<p>Design by <a href="">Silence</a></p>
 		</footer>
 	</aside>
 	<!-- end sidebar -->
@@ -83,6 +85,59 @@ String userName = (String)session.getAttribute("userName") ;
 			<header class="buyInfo">
 				<h3>采购信息</h3>
 			</header>
+			<div class="form">
+					
+					<h3>请输入申请单的详细信息</h3>
+					<hr />
+					<form action="AddRequest">
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="itemName">商品名称:</label>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<!-- <input type="text" id="itemName"> -->
+						<select id="itemName" name="itemName" style="width:160px;" onchange="getPrice()">
+							<%
+								ArrayList<String> itemNames = DataTool.getAllItem() ;
+								for(String s : itemNames){
+									out.print("<option value="+s+">") ;
+									out.print(s) ;
+									out.print("</option>") ;
+								}
+							 %>
+						</select>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="number">商品单价：</label>
+						<input type="text" id="price" name="price" readonly="readonly">
+						
+						<br />
+						<br />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="number" >数量 :</label>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<input type="text" id="number" name="number" onchange="setAccount()">
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="Account">总金额 :</label>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<input type="text" id="Account" name="Account" readonly="readonly">
+						
+						<br />
+						<br />
+						<br />
+						<br />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						申请理由：
+	  					<br />
+						<br />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<textarea rows="12" cols="80%" id="extra" style="margin-left: 39px;" name="reason" id="reason"></textarea>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<br />
+						<br />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<input type="submit">
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<input type="reset" value="清空">
+					</form>
+				</div>
 		</div>
 		<div id="side_div1">
 			<header id="time">
@@ -98,4 +153,7 @@ String userName = (String)session.getAttribute("userName") ;
 		</div>
 	</section>
   </body>
+  <script type="text/javascript">
+  	getPrice() ;
+  </script>
 </html>

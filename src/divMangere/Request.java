@@ -3,7 +3,7 @@ package divMangere;
 //详细的审核信息
 public class Request {
 	//主要的审核信息
-	private String requestID;   //申请单
+	private int requestID;   //申请单
 	private String itemName;    //申请的物品名称
 	private int number;    //申请的数量
 	private double account;   //申请的金额
@@ -12,7 +12,7 @@ public class Request {
 	private String requestName ;  //申请人的姓名
 	
 	//构造函数
-	public Request(String requestID, String itemName, int number,
+	public Request(int requestID, String itemName, int number,
 			double account, String requestTime, String requestStatement,
 			String requestName) {
 		super();
@@ -30,11 +30,11 @@ public class Request {
 
 	//getter 和 setter 方法
 
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
 
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 

@@ -3,7 +3,7 @@ package mangere;
 //这是总经理用来查看所有需求单信息的类
 public class Request {
 	//基本的需求申请单的信息
-	private String requestID;    //申请单的ID号
+	private int requestID;    //申请单的ID号
 	private String itemName;   //所申请的物品名称
 	private int number;    // 所申请物品的数量
 	private double account;   // 所申请物品的总金额
@@ -13,7 +13,7 @@ public class Request {
 	private String requestStatement;  //申请单的状态
 	
 	//构造函数
-	public Request(String requestID, String itemName, int number,
+	public Request(int requestID, String itemName, int number,
 			double account, String requestTime, String requestManName,
 			String auditorManName, String requestStatement) {
 		super();
@@ -31,10 +31,10 @@ public class Request {
 	}
 	
 	//getter 和 setter 方法
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 	public String getItemName() {

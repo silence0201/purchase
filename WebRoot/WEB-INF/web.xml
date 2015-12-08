@@ -5,10 +5,64 @@
     <servlet-name>UserCheck</servlet-name>
     <servlet-class>data.UserCheck</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GetPrice</servlet-name>
+    <servlet-class>servlet.GetPrice</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetInfoByRequestID</servlet-name>
+    <servlet-class>servlet.GetInfoByRequestID</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddRequest</servlet-name>
+    <servlet-class>servlet.AddRequest</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddExport</servlet-name>
+    <servlet-class>servlet.AddExport</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetInfoByOrderID</servlet-name>
+    <servlet-class>servlet.GetInfoByOrderID</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddImport</servlet-name>
+    <servlet-class>servlet.AddImport</servlet-class>
+  </servlet>
+
+
+
+
+
+
   
   <servlet-mapping>
     <servlet-name>UserCheck</servlet-name>
     <url-pattern>/UserCheck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetPrice</servlet-name>
+    <url-pattern>/GetPrice</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInfoByRequestID</servlet-name>
+    <url-pattern>/GetInfoByRequestID</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddRequest</servlet-name>
+    <url-pattern>/AddRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddExport</servlet-name>
+    <url-pattern>/AddExport</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInfoByOrderID</servlet-name>
+    <url-pattern>/GetInfoByOrderID</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddImport</servlet-name>
+    <url-pattern>/AddImport</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>

@@ -4,7 +4,7 @@ package divMangere;
 //这里主要保存最近审核需求单的信息
 public class ReceExamine {
 	//基本信息
-	String requestID ;   //记录申请表的ID
+	int requestID ;   //记录申请表的ID
 	String itemName ;   //申请物品的名称
 	int number ;   //申请物品的数量
 	double account ;  //申请物品的金额
@@ -12,7 +12,7 @@ public class ReceExamine {
 	String requestTime ;   //申请时间
 	
 	//构造函数
-	public ReceExamine(String requestID, String itemName, int number,
+	public ReceExamine(int requestID, String itemName, int number,
 			double account, String requestName, String requestTime) {
 		super();
 		this.requestID = requestID;
@@ -25,10 +25,10 @@ public class ReceExamine {
 	public ReceExamine() {
 		super();
 	}
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 	public String getItemName() {

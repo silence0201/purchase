@@ -2,14 +2,14 @@ package purchase;
 
 public class Approve {
 	//基本的信息
-	private String requestID ;  //申请ID
+	private int requestID ;  //申请ID
 	private String itemName ;  //物品的名称
 	private int count ; //物品的数量
 	private double price ;   //物品的价格
 	private String status ;  //订单的状态
 	
 	//构造方法
-	public Approve(String requestID, String itemName, int count, double price,
+	public Approve(int requestID, String itemName, int count, double price,
 			String status) {
 		super();
 		this.requestID = requestID;
@@ -23,10 +23,10 @@ public class Approve {
 		// TODO Auto-generated constructor stub
 	}
 	//getter 和 setter 方法
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 	public String getItemName() {
@@ -53,7 +53,6 @@ public class Approve {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
 	//hashCode 和 equal方法
 	@Override
 	public int hashCode() {
@@ -65,8 +64,7 @@ public class Approve {
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result
-				+ ((requestID == null) ? 0 : requestID.hashCode());
+		result = prime * result + requestID;
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		return result;
 	}
@@ -89,10 +87,7 @@ public class Approve {
 		if (Double.doubleToLongBits(price) != Double
 				.doubleToLongBits(other.price))
 			return false;
-		if (requestID == null) {
-			if (other.requestID != null)
-				return false;
-		} else if (!requestID.equals(other.requestID))
+		if (requestID != other.requestID)
 			return false;
 		if (status == null) {
 			if (other.status != null)
@@ -102,7 +97,7 @@ public class Approve {
 		return true;
 	}
 	
-	
+
 	
 	
 }

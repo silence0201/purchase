@@ -38,7 +38,7 @@ public class RequestMan {
 		
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
-			String requestID = rs.getString(1) ;
+			int requestID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			String requestStatement = rs.getString(4) ;
@@ -59,7 +59,7 @@ public class RequestMan {
 				+ "order by `request`.`Requesttime` DESC" ;
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
-			String requestID = rs.getString(1) ;
+			int requestID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			String requestStatement = rs.getString(4) ;
@@ -80,7 +80,7 @@ public class RequestMan {
 				+ "order by `request`.`Requesttime` DESC" ;
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
-			String requestID = rs.getString(1) ;
+			int requestID = rs.getInt(1) ;
 			String itemName = rs.getString(2) ;
 			int number = rs.getInt(3) ;
 			double account = rs.getDouble(4) ;
@@ -94,4 +94,5 @@ public class RequestMan {
 	public ArrayList<Request> getRequests(){
 		return requests ;
 	}
+	
 }

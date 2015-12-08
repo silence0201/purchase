@@ -37,7 +37,7 @@ public class Mangere {
 						+ "order by `demand`.`DemandTime` desc";
 		ResultSet rs = db.select(sql);
 		while(rs.next()){
-			String demandID=rs.getString(1);
+			int demandID=rs.getInt(1);
 			int number=rs.getInt(2);
 			double account=rs.getDouble(3);
 			String statement=rs.getString(4);
@@ -59,7 +59,7 @@ public class Mangere {
 		ResultSet rs = db.select(sql);
 		
 		while(rs.next()){
-			String orderID=rs.getString(1);
+			int orderID=rs.getInt(1);
 			String orderTime=rs.getString(2);
 			String orderStatement=rs.getString(3);
 			int number=rs.getInt(4);
@@ -84,7 +84,7 @@ public class Mangere {
 		ResultSet rs = db.select(sql) ;
 		
 		while(rs.next()){
-			String requestID=rs.getString(1);
+			int requestID=rs.getInt(1);
 			int number=rs.getInt(2);
 			double account=rs.getDouble(3);
 			String requestTime=rs.getString(4);

@@ -1,4 +1,6 @@
 <%@page import="stockman.Export"%>
+<%@page import="data.DataTool"%> 
+<%@page import="java.text.SimpleDateFormat"%> 
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
@@ -14,9 +16,11 @@ String userName = (String)session.getAttribute("userName") ;
 %>
 
 <jsp:useBean id="stockman" class="stockman.Stockman"></jsp:useBean>
+<jsp:useBean id="addExport" class="stockman.AddExport"></jsp:useBean>
 <%
 	String userID = (String)session.getAttribute("userID");
 	stockman.setUserID(userID) ;
+	addExport.setUserID(userID);
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -24,12 +28,13 @@ String userName = (String)session.getAttribute("userName") ;
   <head>
     <base href="<%=basePath%>">
     
-    <title>Stockman||Import</title>
+    <title>Stockman||Export</title>
     
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/stockman.css">
 	
 	<script type="text/javascript" src="js/CookieUtil.js"></script>
+	<script type="text/javascript" src="js/stock-export.js"></script>
 	<script type="text/javascript">
 		var quit = function(){
 			CookieUtil.unset("userID") ;
@@ -95,31 +100,32 @@ String userName = (String)session.getAttribute("userName") ;
 					<hr />
 					<form action="">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="itemID">商品ID &nbsp;&nbsp;&nbsp;&nbsp;:</label>
-						<input type="text" id="itemID">
+						<label for="requestID">申请单ID :&nbsp;&nbsp;</label>
+						<input type="text" id="requestID" name="requestID" onchange="setInfo()">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="number">商品单价：</label>
-						<input type="text" id="price">
+						<label for="requestManID">审核人ID :</label>
+						<input type="text" id="requestManID" name="requestManID">
+						<br />
+						<br />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="itemID">商品ID &nbsp;&nbsp;&nbsp;&nbsp;:</label>
+						<input type="text" id="itemID" name="itemID" readonly="readonly">
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="price">商品单价：</label>
+						<input type="text" id="price" name="price" readonly="readonly">
 						
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="Count">入库数量 :</label>
-						<input type="text" id="Count">
+						<label for="number">入库数量 :</label>
+						<input type="text" id="number" name="number" readonly="readonly">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="Account">总金额 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" id="Account">
+						<input type="text" id="account" name="account" readonly="readonly">
 						
 						<br />
 						<br />
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="userID">审核人ID :</label>
-						<input type="text" id="userID">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="OrderID">申请单ID :&nbsp;&nbsp;</label>
-						<input type="text" id="OrderID">
-						<br />
-						<br />
+
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						备注：
 	  					<br />
@@ -134,6 +140,17 @@ String userName = (String)session.getAttribute("userName") ;
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<input type="reset" value="清空">
 					</form>
+<%-- 					<%
+						addExport.setItemID("A001") ;
+						addExport.setRequestID(100002);
+						addExport.setNumber(20);
+						Date dnow = new Date(); 
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+						String dtime="";				
+						dtime=sdf.format(dnow);
+						addExport.setExportTime(dtime);
+						addExport.setImportSql();
+					%> --%>
 				</div>
 			</header>
 		</div>

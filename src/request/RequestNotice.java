@@ -3,7 +3,7 @@ package request;
 //记录通知变量
 public class RequestNotice {
 	//记录基本的信息
-	private String requestID;   //订单id
+	private int requestID;   //订单id
 	private String itemName;    // 订单物品
 	private int number;    //订单名称
 	private String requestStatement;   //订单状态
@@ -13,7 +13,7 @@ public class RequestNotice {
 	public RequestNotice() {
 		super();
 	}
-	public RequestNotice(String requestID, String itemName, int number,
+	public RequestNotice(int requestID, String itemName, int number,
 			String requestStatement, String requestTime) {
 		super();
 		this.requestID = requestID;
@@ -25,10 +25,10 @@ public class RequestNotice {
 	
 	
 	//getter 和 settet 方法
-	public String getRequestID() {
+	public int getRequestID() {
 		return requestID;
 	}
-	public void setRequestID(String requestID) {
+	public void setRequestID(int requestID) {
 		this.requestID = requestID;
 	}
 	public String getItemName() {
