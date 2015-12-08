@@ -2,6 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,7 +48,7 @@ public class AddExport extends HttpServlet {
 		Date dnow = new Date(); 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String exportTime = sdf.format(dnow);  //入库时间
-		
+		/*
 		//往出库单插入数据
 		String sql="INSERT INTO export(RequestID,StockmanID,RequestmanID,Exporttime)"
 				+ " VALUES('"+requestID+"','"+userID+"','"+requestManID+"','"+exportTime+"')";
@@ -68,6 +71,70 @@ public class AddExport extends HttpServlet {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		*/
+		int count = 0;
+		try {
+			count = DataTool.getItemCount(itemID)-number;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String sql1 ="INSERT INTO export(RequestID,StockmanID,RequestmanID,Exporttime)"
+				+ " VALUES('"+requestID+"','"+userID+"','"+requestManID+"','"+exportTime+"')";
+		String sql2 = "UPDATE `item` SET `ItemsInventory` = "+count
+				+ " WHERE `ItemID` = '"+itemID+"'" ;
+		String sql3 = "UPDATE `request` SET `Requeststatement` = '"+"完成"+"' "
+				+ "WHERE `request`.`RequestID` = '"+requestID+"'" ;
+		
+		Connection conn = null;
+		PreparedStatement ps1 = null;
+		PreparedStatement ps2 = null;
+		PreparedStatement ps3 = null;
+		try {
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			ps1 = conn.prepareStatement(sql1);
+			ps2 = conn.prepareStatement(sql2);
+			ps3 = conn.prepareStatement(sql3);
+			ps1.executeUpdate();
+			ps2.executeUpdate();
+			ps3.executeUpdate();
+			conn.commit();
+		} catch (SQLException sqle) {
+			try {
+				conn.rollback();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps1 != null) {
+					ps1.close();
+				}				
+				if (ps2 != null) {
+					ps2.close();
+				}
+				if (ps3 != null) {
+					ps3.close();
+				}
+			} catch (Exception e) {
+				
+			}
+		}
+		try {
+			if (conn != null) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			
 		}
 		
 		out.print("插入成功，即将调回调用页面");
