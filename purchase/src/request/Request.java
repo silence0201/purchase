@@ -1,7 +1,15 @@
 package request;
 
+
 public class Request {
-	//订单的基本信息
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+		//订单的基本信息
 	//基本的需求申请单的信息
 		private int requestID;    //申请单的ID号
 		private String itemName;   //所申请的物品名称
@@ -10,8 +18,19 @@ public class Request {
 		private String requestTime;   //提出申请的时间
 		private String requestManName;  // 申请人的姓名
 		private String requestStatement;  //申请单的状态
+		private String reason ;  //申请理由
 		
 		//构造函数
+		public Request(int RequestID,String itemName,int number,double account,String requestTime,String requestStatus,String userName,String reason) {
+			this.requestID = RequestID ;
+			this.itemName = itemName ;
+			this.number = number ;
+			this.account = account ;
+			this.requestTime = requestTime ;
+			this.requestManName = userName ;
+			this.requestStatement = requestStatus ;
+			this.reason = reason ;
+		}
 		
 		public Request(int requestID, String itemName, int number,
 				double account, String requestTime, String requestManName,

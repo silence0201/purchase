@@ -11,8 +11,11 @@ public class Request {
 	private String requestManName;  // 申请人的姓名
 	private String auditorManName;   //审核人的姓名
 	private String requestStatement;  //申请单的状态
+	private String reason ; // 申请原因
 	
 	//构造函数
+
+	
 	public Request(int requestID, String itemName, int number,
 			double account, String requestTime, String requestManName,
 			String auditorManName, String requestStatement) {
@@ -26,11 +29,30 @@ public class Request {
 		this.auditorManName = auditorManName;
 		this.requestStatement = requestStatement;
 	}
+	
+	public Request(int RequestID,String itemName,int number,
+			double account,String requestTime,
+			String userName,String reason){
+		this.requestID = RequestID ;
+		this.itemName = itemName ;
+		this.number = number ;
+		this.account = account ;
+		this.requestTime = requestTime ;
+		this.requestManName = userName ;
+		this.reason = reason ;
+	}
+	
 	public Request() {
 		super();
 	}
 	
 	//getter 和 setter 方法
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public int getRequestID() {
 		return requestID;
 	}

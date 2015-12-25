@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import data.DBUtil;
 import data.DataTool;
+import request.Statistics;
 
 public class AddRequest extends HttpServlet {
 
@@ -53,12 +52,21 @@ public class AddRequest extends HttpServlet {
 		}
 		
 		Date dnow = new Date() ;
+		Statistics statistics = new Statistics();
+		statistics.setUserID(userID);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String requestTime=sdf.format(dnow) ;			  //获取申请时间
 		
 		
 		String sql="INSERT INTO request(ItemID,Number,Totalaccount,RequestmanID,Requesttime,Requeststatement,Reason)"
 				+ " VALUES('"+itemID+"','"+number+"','"+account+"','"+userID+"','"+requestTime+"','未审核','"+reason+"')";
+		//修改requestcount的统计
+		int totalAccount=Integer.parseInt(account);//String->int
+		try {
+			statistics.setStatistics(totalAccount);
+		} catch (Exception e1) { 
+			e1.printStackTrace();
+		}
 		
 		try {
 			db.insert(sql);

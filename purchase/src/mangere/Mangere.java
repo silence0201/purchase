@@ -33,9 +33,9 @@ public class Mangere {
 
 	//对申请单信息进行获取
 	public void setDemands() throws Exception{
-		String sql =  "select `demand`.`DemandID`,`demand`.`Number`,`demand`.`Account`,`demand`.`Statement`,`demand`.`DemandTime`,`item`.`Itemname`,`request`.`AuditorID`"
+		String sql =  "select `demand`.`DemandID`,`demand`.`Number`,`demand`.`Account`,`demand`.`Statement`,`demand`.`DemandTime`,`item`.`Itemname`"
 				+ "From `demand`,`item`,`request` "
-				+ "WHERE `demand`.`ItemID` = `item`.`ItemID` AND `demand`.`DemandID`=`request`.`DemandlistID` AND `request`.`AuditorID`='"+userID+"'"
+				+ "WHERE `demand`.`ItemID` = `item`.`ItemID` AND `demand`.`DemandID`=`request`.`DemandlistID` "
 						+ "order by `demand`.`DemandTime` desc";
 		ResultSet rs = db.select(sql);
 		while(rs.next()){

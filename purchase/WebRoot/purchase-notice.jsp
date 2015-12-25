@@ -1,3 +1,5 @@
+<%@page import="purchase.RequestNotice"%>
+<%@page import="purchase.Request"%>
 <%@page import="purchase.DemandNotice"%>
 <%@ page import="purchase.Approve"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8"%>
@@ -37,7 +39,18 @@ String userName = (String)session.getAttribute("userName") ;
 			CookieUtil.unset("password") ;
 		}
 	</script>
-
+	<script type="text/javascript">
+ 	function handle(val){
+		window.location.href = "purchase-handle.jsp?demandID="+val ;
+ 	}
+ 	 	function handler(val){
+		window.location.href = "purchase-handle-request.jsp?requestID="+val ;
+ 	}
+ 	
+	</script>
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script src="js/jquery-1.3.min.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
   </head>
   
   <body>
@@ -53,8 +66,39 @@ String userName = (String)session.getAttribute("userName") ;
 	<!--end of first header-->
 	<section id="second_bar">
 		<div class="user">
+			<%
+				int count = 0 ;
+				purchase.setDemandNotices() ;
+				ArrayList<DemandNotice> demandNotices = purchase.getDemandNotices() ;
+				
+				Iterator<DemandNotice> demandNoticesIterator = demandNotices.iterator() ;
+				String[] s = new String[100] ;
+				
+				while(demandNoticesIterator.hasNext()){
+					DemandNotice dn = demandNoticesIterator.next() ;
+					s[count] = "<p class='bg-info noticeCon'>" ;
+					s[count] += "你有需求单号为<a onclick='handle(this.innerHTML)'>"+dn.getDemandID()+"</a>的需求单需要采购" ;
+					s[count] += "</p>" ;
+					count++ ;
+				}
+				session.setAttribute("count", count) ;
+			 %>
+			 <%
+			 	purchase.setRequestNotices() ;
+			 	ArrayList<RequestNotice> requestNotices = purchase.getRequestNotices() ;
+			 	
+			 	Iterator<RequestNotice> requestNoticeIterator = requestNotices.iterator() ;
+			 	
+			 	while(requestNoticeIterator.hasNext()){
+			 		RequestNotice rn = requestNoticeIterator.next() ;
+			 		s[count] = "<p class='bg-info noticeCon'>" ;
+			 		s[count] += "你有需求单号为<a onclick='handler(this.innerHTML)'>"+rn.getRequestID()+"</a>的需求单需要审核" ;
+					s[count] += "</p>" ;
+					count++ ;
+			 	}
+			  %>
 			<p><%=userName  %>（
-				<a href="">3个未处理</a>
+				<a href=""><%=count %>个未处理</a>
 				）
 			</p>
 		</div>
@@ -91,24 +135,85 @@ String userName = (String)session.getAttribute("userName") ;
 				<h3>通知</h3>
 			</header>
 			<%
-				purchase.setDemandNotices() ;
-				ArrayList<DemandNotice> demandNotices = purchase.getDemandNotices() ;
-				
-				Iterator<DemandNotice> demandNoticesIterator = demandNotices.iterator() ;
-				
-				while(demandNoticesIterator.hasNext()){
-					DemandNotice dn = demandNoticesIterator.next() ;
-					out.print("<p class='bg-info noticeCon'>") ;
-					out.print("你有需求单号为"+dn.getDemandID()+"的需求单需要采购") ;
-					out.print("</p>") ;
-				} 
+				for(int i=0;i<count;i++){
+					out.print(s[i]) ;
+				}
 			 %>
 		</div>
 		<div id="side_div1">
 			<header id="time">
 				<h3>时间</h3>
-				<embed src="./images/time.swf" />
 			</header>
+			<table cellspacing="0">
+			  <thead>
+			    <tr>
+			      <th>Mon</th>
+			      <th>Tue</th>
+			      <th>Wed</th>
+			      <th>Thu</th>
+			      <th>Fri</th>
+			      <th>Sat</th>
+			      <th>Sun</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td class="padding" colspan="3"></td>
+			      <td> 1</td>
+			      <td> 2</td>
+			      <td> 3</td>
+			      <td> 4</td>
+			    </tr>
+			    <tr>
+			      <td> 5</td>
+			      <td> 6</td>
+			      <td> 7</td>
+			      <td> 8</td>
+			      <td class="today"> 9</td>
+			      <td>10</td>
+			      <td>11</td>
+			    </tr>
+			    <tr>
+			      <td>12</td>
+			      <td class="date_has_event"> 13
+			        <div class="events">
+			          <ul>
+			            <li> <span class="title">Event 1</span> <span class="desc">Lorem ipsum dolor sit amet, consectetu adipisicing elit.</span> </li>
+			            <li> <span class="title">Event 2</span> <span class="desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span> </li>
+			          </ul>
+			        </div></td>
+			      <td>14</td>
+			      <td>15</td>
+			      <td>16</td>
+			      <td>17</td>
+			      <td>18</td>
+			    </tr>
+			    <tr>
+			      <td>19</td>
+			      <td>20</td>
+			      <td>21</td>
+			      <td class="date_has_event"> 22
+			        <div class="events">
+			          <ul>
+			            <li> <span class="title">Event 1</span> <span class="desc">Lorem ipsum dolor sit amet, consectetu adipisicing elit.</span> </li>
+			            <li> <span class="title">Event 2</span> <span class="desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span> </li>
+			          </ul>
+			        </div></td>
+			      <td>23</td>
+			      <td>24</td>
+			      <td>25</td>
+			    </tr>
+			    <tr>
+			      <td>26</td>
+			      <td>27</td>
+			      <td>28</td>
+			      <td>29</td>
+			      <td>30</td>
+			      <td>31</td>
+			      <td class="padding"></td>
+			    </tr>
+			  </tbody>
+			</table>
 		</div>
 
 		<div id="side_div2">
@@ -116,7 +221,7 @@ String userName = (String)session.getAttribute("userName") ;
 			 	<h3>审批记录</h3>
 			 </header>
 			 	<table class="table table-striped table-hover table-bordered">
-			 		<thead>
+			 		<thead style="font-size: 0.9em">
 			 			<tr>
 			 				<td>申请单号</td>
 			 				<td>商品名称</td>
@@ -126,7 +231,7 @@ String userName = (String)session.getAttribute("userName") ;
 			 			</tr>
 			 		</thead>
 			 		
-			 		<tbody>
+			 		<tbody style="font-size: 0.9em">
 			 				<%
 						 		purchase.setApprove() ;
 						 		ArrayList<Approve> approves = purchase.getApprove() ;

@@ -130,7 +130,7 @@ public class DivMangere {
 		String sql = "SELECT `request`.`RequestID`,`item`.`Itemname`,`request`.`Number`,`request`.`Totalaccount`,"
 				+ "`request`.`Requeststatement`,`request`.`RequestmanID`,`request`.`Requesttime`   "
 				+ "FROM `request`,`item` ,`user`"
-				+ "WHERE `request`.`Requeststatement` = '未审核' AND `request`.`ItemID` = `item`.`ItemID` AND `request`.`Totalaccount` > 1000 "
+				+ "WHERE `request`.`Requeststatement` = '未审核' AND `request`.`ItemID` = `item`.`ItemID` AND `request`.`Totalaccount` > 1000 AND `request`.`Totalaccount` < 5000 "
 				+ "AND `request`.`RequestmanID` = `user`.`UserID` AND `user`.`Position` like '"+position+"%'" 
 				+ "ORDER BY `request`.`Requesttime` ";
 		ResultSet rs = db.select(sql) ;

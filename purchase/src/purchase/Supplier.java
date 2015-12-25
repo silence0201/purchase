@@ -8,6 +8,7 @@ public class Supplier {
 	private String contact ;   //联系人
 	private String tel ;   //联系人
 	private String add ; //供应商的地址
+	private String moreAdd ; //供应商的具体信息
 	
 	//构造函数
 	public Supplier(String supplierID, String supplierName, String contact,
@@ -20,11 +21,30 @@ public class Supplier {
 		this.add = add;
 	}
 
+
+	public Supplier(String supplierID, String supplierName, String contact,
+			String tel, String add, String moreAdd) {
+		super();
+		this.supplierID = supplierID;
+		this.supplierName = supplierName;
+		this.contact = contact;
+		this.tel = tel;
+		this.add = add;
+		this.moreAdd = moreAdd;
+	}
+
 	public Supplier() {
 		super();
 	}
 
 	//getter和setter方法
+	public String getMoreAdd() {
+		return moreAdd;
+	}
+	
+	public void setMoreAdd(String moreAdd) {
+		this.moreAdd = moreAdd;
+	}
 	public String getSupplierID() {
 		return supplierID;
 	}

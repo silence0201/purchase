@@ -14,7 +14,9 @@ header#header {
 	width: 100%;
 	background: #222222 url(../images/header_bg.png) repeat-x;
 }
-
+a{
+	cursor:hand ;
+}
 
 header#header h1.site_title, header#header h2.section_title {
 	float: left;
@@ -267,7 +269,7 @@ section #main{
 	margin: 5px;
 	float: left;
 	width: 30%;
-	height: 220px;
+	height: 300px;
 	background-color: black;
 	border: 1px solid #9BA0AF;
 	-webkit-border-radius: 5px;
@@ -282,14 +284,15 @@ section #main{
 	padding: 5px;
 }
 embed{
-	padding:5px;
+	padding:10px;
+	top:30px;
 }
 
 #side_div2{
 	margin: 5px;
 	float: left;
 	width: 30%;
-	height: 470px;
+	height: 390px;
 	border: 1px solid #9BA0AF;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;

@@ -30,7 +30,9 @@ header#header h1.site_title, header#header h2.section_title {
 	color: #fff;
 	text-shadow: 0 -1px 0 #000;
 }
-
+a{
+	cursor:hand ;
+}
 header#header h2.section_title {
 	text-align: center;
 	text-indent: 4.5%;
@@ -279,7 +281,7 @@ input[type=submit],input[type=reset]{
 	margin: 5px;
 	float: left;
 	width: 25%;
-	height: 220px;
+	height: 300px;
 	background-color: black;
 	border: 1px solid #9BA0AF;
 	-webkit-border-radius: 5px;
@@ -302,7 +304,7 @@ embed{
 	margin: 5px;
 	float: left;
 	width: 25%;
-	height: 470px;
+	height: 390px;
 	border: 1px solid #9BA0AF;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;

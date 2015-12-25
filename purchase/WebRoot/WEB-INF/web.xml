@@ -29,6 +29,29 @@
     <servlet-name>AddImport</servlet-name>
     <servlet-class>servlet.AddImport</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>UpdateRequest</servlet-name>
+    <servlet-class>servlet.UpdateRequest</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetInfoByDemandID</servlet-name>
+    <servlet-class>servlet.GetInfoByDemandID</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AuditorRequest</servlet-name>
+    <servlet-class>servlet.AuditorRequest</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetInfoBySupplierID</servlet-name>
+    <servlet-class>servlet.GetInfoBySupplierID</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetInfoByItemID</servlet-name>
+    <servlet-class>servlet.GetInfoByItemID</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -64,6 +87,27 @@
     <servlet-name>AddImport</servlet-name>
     <url-pattern>/AddImport</url-pattern>
   </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>UpdateRequest</servlet-name>
+    <url-pattern>/UpdateRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInfoByDemandID</servlet-name>
+    <url-pattern>/GetInfoByDemandID</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>AuditorRequest</servlet-name>
+    <url-pattern>/AuditorRequest</url-pattern>
+   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInfoBySupplierID</servlet-name>
+    <url-pattern>/GetInfoBySupplierID</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInfoByItemID</servlet-name>
+    <url-pattern>/GetInfoByItemID</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>

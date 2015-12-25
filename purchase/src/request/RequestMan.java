@@ -33,7 +33,7 @@ public class RequestMan {
 	public void setRequestNotices() throws Exception{
 		String sql = "select `request`.`RequestID`,`item`.`Itemname`,`request`.`Number`,`request`.`Requeststatement`,`Requesttime` "
 				+ "from `request`,`item`  "
-				+ "where `request`.`ItemID` = `item`.`ItemID` AND `request`.`Requeststatement` in ('通过','完成') "
+				+ "where `request`.`ItemID` = `item`.`ItemID` AND `request`.`Requeststatement` in ('通过','完成','拒绝') "
 				+ "order by `Requesttime` desc " ;
 		
 		ResultSet rs = db.select(sql) ;

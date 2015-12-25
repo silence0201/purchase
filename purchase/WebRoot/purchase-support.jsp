@@ -37,8 +37,19 @@ String userName = (String)session.getAttribute("userName") ;
 			CookieUtil.unset("userID") ;
 			CookieUtil.unset("password") ;
 		}
+		function supplierInfo(val){
+			window.location.href = "purchase-supplierInfo.jsp?supplierID="+val ;
+		}
+		function add(){
+			window.location.href = "purchase-supplier-add.jsp" ;
+		}
+		function del(){
+			window.location.href = "purchase-supplier-del.jsp" ;
+		}
 	</script>
-
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script src="js/jquery-1.3.min.js" type="text/javascript"></script>
+	<script src="js/script.js" type="text/javascript"></script>
   </head>
   
   <body>
@@ -55,7 +66,7 @@ String userName = (String)session.getAttribute("userName") ;
 	<section id="second_bar">
 		<div class="user">
 			<p><%=userName  %>（
-				<a href="">3个未处理</a>
+				<a href=""><%=session.getAttribute("count") %>个未处理</a>
 				）
 			</p>
 		</div>
@@ -111,7 +122,7 @@ String userName = (String)session.getAttribute("userName") ;
 						 			out.print("<tr>") ;
 						 			Supplier order = iterator.next() ;
 						 			//out.println(approve.getRequestID()+","+approve.getItemName()+","+approve.getCount()+","+approve.getPrice()+","+approve.getStatus()) ;
-						 			out.print("<td>"+order.getSupplierID()+"</td>");
+						 			out.print("<td><a onclick='supplierInfo(this.innerHTML)'>"+order.getSupplierID()+"</a></td>");
 						 			out.print("<td>"+order.getSupplierName()+"</td>");
 						 			out.print("<td>"+order.getContact()+"</td>");
 						 			out.print("<td>"+order.getTel()+"</td>");
@@ -122,36 +133,117 @@ String userName = (String)session.getAttribute("userName") ;
 			 				 %>
 			 		</tbody>
 			 	</table>
+			 	<hr />
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<button type="button" class="btn btn-primary" onclick="add()">添加供应商</button>
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				<button type="button" class="btn btn-primary" onclick="del()">删除供应商</button>
 		</div>
 		<div id="side_div1">
 			<header id="time">
 				<h3>时间</h3>
-				<embed src="./images/time.swf" />
 			</header>
+			<table cellspacing="0">
+			  <thead>
+			    <tr>
+			      <th>Mon</th>
+			      <th>Tue</th>
+			      <th>Wed</th>
+			      <th>Thu</th>
+			      <th>Fri</th>
+			      <th>Sat</th>
+			      <th>Sun</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td class="padding" colspan="3"></td>
+			      <td> 1</td>
+			      <td> 2</td>
+			      <td> 3</td>
+			      <td> 4</td>
+			    </tr>
+			    <tr>
+			      <td> 5</td>
+			      <td> 6</td>
+			      <td> 7</td>
+			      <td> 8</td>
+			      <td class="today"> 9</td>
+			      <td>10</td>
+			      <td>11</td>
+			    </tr>
+			    <tr>
+			      <td>12</td>
+			      <td class="date_has_event"> 13
+			        <div class="events">
+			          <ul>
+			            <li> <span class="title">Event 1</span> <span class="desc">Lorem ipsum dolor sit amet, consectetu adipisicing elit.</span> </li>
+			            <li> <span class="title">Event 2</span> <span class="desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span> </li>
+			          </ul>
+			        </div></td>
+			      <td>14</td>
+			      <td>15</td>
+			      <td>16</td>
+			      <td>17</td>
+			      <td>18</td>
+			    </tr>
+			    <tr>
+			      <td>19</td>
+			      <td>20</td>
+			      <td>21</td>
+			      <td class="date_has_event"> 22
+			        <div class="events">
+			          <ul>
+			            <li> <span class="title">Event 1</span> <span class="desc">Lorem ipsum dolor sit amet, consectetu adipisicing elit.</span> </li>
+			            <li> <span class="title">Event 2</span> <span class="desc">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span> </li>
+			          </ul>
+			        </div></td>
+			      <td>23</td>
+			      <td>24</td>
+			      <td>25</td>
+			    </tr>
+			    <tr>
+			      <td>26</td>
+			      <td>27</td>
+			      <td>28</td>
+			      <td>29</td>
+			      <td>30</td>
+			      <td>31</td>
+			      <td class="padding"></td>
+			    </tr>
+			  </tbody>
+			</table>
 		</div>
 
 		<div id="side_div2">
 			 <header id="supportCount">
 			 	<h3>供应商统计</h3>
 			 </header>
-			 <table class='table table-striped table-hover table-bordered'>
-			 	<tr>
+			 <div>
+			 	<table class='table table-striped table-hover table-bordered'>
+			 	<thead>
+			 		<tr>
 			 				<td>省份</td>
 			 				<td>数目</td>
-			 	</tr>
-			 <%
-			 	purchase.setCount() ;
-			 	HashMap<String,Integer> supplierCount = purchase.getCount()  ;
-			 	Set<Map.Entry<String,Integer>> sets = supplierCount.entrySet() ;
+			 		</tr>
+			 	</thead>
 
-			 	for(Map.Entry<String,Integer> msp : sets){
-			 		out.print("<tr>") ;
-			 		out.print("<td>"+msp.getKey()+"</td>");
-			 		out.print("<td>"+msp.getValue()+"</td>");
-			 		out.print("</tr>") ;
-			 	}
-			  %>
-			  </table>
+			 	<tbody>
+				 	<%
+				 	purchase.setCount() ;
+				 	HashMap<String,Integer> supplierCount = purchase.getCount()  ;
+				 	Set<Map.Entry<String,Integer>> sets = supplierCount.entrySet() ;
+	
+				 	for(Map.Entry<String,Integer> msp : sets){
+				 		out.print("<tr>") ;
+				 		out.print("<td>"+msp.getKey()+"</td>");
+				 		out.print("<td>"+msp.getValue()+"</td>");
+				 		out.print("</tr>") ;
+				 	}
+				  %>
+			 	</tbody>
+			 	</table>
+			 </div>
 		</div>
 	</section>
   </body>

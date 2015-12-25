@@ -10,6 +10,7 @@ public class Request {
 	private String requestTime;  //申请的
 	private String requestStatement;  //申请单的状态
 	private String requestName ;  //申请人的姓名
+	private String reason ; // 申请的理由
 	
 	//构造函数
 	public Request(int requestID, String itemName, int number,
@@ -24,8 +25,28 @@ public class Request {
 		this.requestStatement = requestStatement;
 		this.requestName = requestName;
 	}
+	public Request(int requestID, String itemName, int number, double account,
+			String requestTime, String requestStatement, String requestName,
+			String reason) {
+		super();
+		this.requestID = requestID;
+		this.itemName = itemName;
+		this.number = number;
+		this.account = account;
+		this.requestTime = requestTime;
+		this.requestStatement = requestStatement;
+		this.requestName = requestName;
+		this.reason = reason;
+	}
 	public Request() {
 		super();
+	}
+
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	//getter 和 setter 方法
