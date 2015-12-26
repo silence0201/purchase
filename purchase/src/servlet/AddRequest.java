@@ -40,7 +40,7 @@ public class AddRequest extends HttpServlet {
 		String price = request.getParameter("price") ;   //获取商品的单价
 		String number = request.getParameter("number") ;  //获取商品的数量
 		String account = request.getParameter("Account") ;  //获取商品的总金额
-		String reason = request.getParameter("reason") ;   //获取申请的原因
+		String reason = new String(request.getParameter("reason").getBytes("ISO-8859-1"),"UTF-8");   //获取申请的原因
 		HttpSession session = request.getSession() ;
 		String userID = (String)session.getAttribute("userID") ;   //获取申请人ID
 		String itemID = "" ;                                       //获取物品的ID 

@@ -28,13 +28,14 @@ public class DeleteSupplierItem extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Purchase purchase=new Purchase();
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("utf-8");
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
 		String supplierid=request.getParameter("supplierID");//获取供应商id
-		String itemName=request.getParameter("itemName");//获取供应商对应商品名称
+		String itemName=new String(request.getParameter("itemName").getBytes("ISO-8859-1"),"UTF-8");//获取供应商对应商品名称
 		
-		int supplierID=Integer.getInteger(supplierid);
+		int supplierID=Integer.parseInt(supplierid);
 		try {
 			//删除供应商某一商品信息
 			purchase.deleteSupplierItem(supplierID, itemName);

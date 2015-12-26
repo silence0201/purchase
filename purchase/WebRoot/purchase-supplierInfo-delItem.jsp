@@ -41,17 +41,11 @@ String userName = (String)session.getAttribute("userName") ;
 			CookieUtil.unset("userID") ;
 			CookieUtil.unset("password") ;
 		}
-		function addItem(){
-			var supplierID = document.getElementById("supplierID").innerHTML ;
-			window.location.href = "purchase-supplierInfo-addItem.jsp?supplierID="+supplierID ;
+		function del(){
+			document.getElementById("del").click() ;
 		}
-		function delItem(){
-			var supplierID = document.getElementById("supplierID").innerHTML ;
-			window.location.href = "purchase-supplierInfo-delItem.jsp?supplierID="+supplierID ;
-		}
-		function modify(){
-			var supplierID = document.getElementById("supplierID").innerHTML ;
-			window.location.href = "purchase-supplierInfo-modify.jsp?supplierID="+supplierID ;
+		function clear(){
+			document.getElementById("clear").click() ;
 		}
 	</script>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -144,28 +138,32 @@ String userName = (String)session.getAttribute("userName") ;
 					<input type="text" id="itemID" name="itemID" onchange="setInfo()">
 					<br />
 					<hr />
-					<form action="">
+					<form action="DeleteSupplierItem">
+						<input type="text" name="supplierID" value="<%=supplierID %>" style="display: none;">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="itemName">物品名称&nbsp;</label>
-						<input type="text" id="itemName" name="itemName">
+						<input type="text" id="itemName" name="itemName" readonly="readonly">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="price">物品单价</label>
-						<input type="text" id="price" name="price">
+						<input type="text" id="price" name="price" readonly="readonly">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="quality">物品质量&nbsp;</label>
-						<input type="text" id="quality" name="quality">
+						<input type="text" id="quality" name="quality" readonly="readonly">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="test">物品状态&nbsp;</label>
-						<input type="text" id="test" name="test">
+						<input type="text" id="test" name="test" readonly="readonly">
 						<br />
 						<hr />
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="submit" value="删除">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="reset" value="清空">
+						<input type="submit" id="del" style="display: none;">
+						<input type="reset" id="clear" style="display: none;">
 					</form>
+					<hr />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button type="button" class="btn btn-primary" onclick="del()">删除</button>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button type="button" class="btn btn-primary" onclick="clear()">清空</button>
 				</div>
 		</div>
 		<div id="side_div1">

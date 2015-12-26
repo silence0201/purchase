@@ -41,9 +41,8 @@ String userName = (String)session.getAttribute("userName") ;
 			CookieUtil.unset("userID") ;
 			CookieUtil.unset("password") ;
 		}
-		
-		function add(){
-			document.getElementById("add").click() ;
+		function modify(){
+			document.getElementById("modify").click() ;
 		}
 		function clear(){
 			document.getElementById("clear").click() ;
@@ -52,7 +51,7 @@ String userName = (String)session.getAttribute("userName") ;
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<script src="js/jquery-1.3.min.js" type="text/javascript"></script>
 	<script src="js/script.js" type="text/javascript"></script>
-	<script src="js/purchase-supplier-itemAdd.js" type="text/javascript"></script>
+	<script src="js/purchase-supplier-item.js" type="text/javascript"></script>
   </head>
   
   <body>
@@ -81,7 +80,7 @@ String userName = (String)session.getAttribute("userName") ;
 				<div class="place_driver"></div>
 				<a   href="purchase-supplierInfo.jsp?supplierID=<%=supplierID %>">供应商信息</a>
 				<div class="place_driver"></div>
-				<a   href="#" class="current">增加商品</a>			
+				<a   href="#" class="current">修改商品</a>			
 			</article>
 		</div>
 	</section>
@@ -133,32 +132,35 @@ String userName = (String)session.getAttribute("userName") ;
 							</tr>
 						</tbody>
 					</table>
+					<hr />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<label for="itemID">物品ID&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					<input type="text" id="itemID" name="itemID" onchange="setInfo()">
 					<br />
 					<hr />
-					<form action="AddSupplierItem">
-						<input type="text" id="supplierID" value=<%=supplierID %> name="supplierID" style="display: none;">
+					<form action="UpdateSupplierItem">
+						<input type="text" name="supplierID" value="<%=supplierID %>" style="display: none;" >
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="itemName">物品名称&nbsp;</label>
-						<input type="text" id="itemName" name="itemName" onchange="setInfo()">
+						<input type="text" id="itemName" name="itemName" readonly="readonly">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="price">物品单价</label>
 						<input type="text" id="price" name="price">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
- 						<label for="quality">物品质量&nbsp;</label>
+						<label for="quality">物品质量&nbsp;</label>
 						<input type="text" id="quality" name="quality">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="test">物品状态&nbsp;</label>
 						<input type="text" id="test" name="test">
 						<br />
-						
-						<input type="submit" id="add" style="display: none;">
+						<input type="submit" id="modify" style="display: none;">
 						<input type="reset" id="clear" style="display: none;">
 					</form>
 					<hr />
 					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<button type="button" class="btn btn-primary" onclick="add()">增加</button>
+					<button type="button" class="btn btn-primary" onclick="modify()">修改</button>
 					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<button type="button" class="btn btn-primary" onclick="clear()">清空</button>
 				</div>

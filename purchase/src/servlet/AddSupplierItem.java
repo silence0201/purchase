@@ -32,11 +32,10 @@ public class AddSupplierItem extends HttpServlet {
 		out.println("<HTML>");
 		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
 		String supplierid=request.getParameter("supplierID");//获取供应商id
-		String itemID=request.getParameter("itemID");
-		String itemName=request.getParameter("itemName");//获取商品名称
-		String quality=request.getParameter("quality");//获取商品质量
+		String itemName=new String(request.getParameter("itemName").getBytes("ISO-8859-1"),"UTF-8");//获取商品名称
+		String quality=new String(request.getParameter("quality").getBytes("ISO-8859-1"),"UTF-8");//获取商品质量
 		String price=request.getParameter("price");//获取商品单价
-		String test=request.getParameter("test");//获取物品状态
+		String test=new String(request.getParameter("test").getBytes("ISO-8859-1"),"UTF-8");//获取物品状态
 		
 		int supplierID=Integer.parseInt(supplierid);
 		double account=Double.parseDouble(price);

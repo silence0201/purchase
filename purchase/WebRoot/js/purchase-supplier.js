@@ -34,7 +34,7 @@
                 	contacts.value = s[1] ;
                 	telnumber.value = s[2] ;
                 	address.value = s[3] ;
-                	moreAdd.innerHTML = s[4] ;
+//                	moreAdd.innerHTML = s[4] ;
 
                 }
                }

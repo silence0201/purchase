@@ -28,17 +28,18 @@ public class UpdateSupplier extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Purchase purchase=new Purchase();
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("utf-8");
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
 		String supplierid=request.getParameter("supplierID");//获取供应商id
-		String supplierName=request.getParameter("supplierName");//获取供应商名称
-		String contacts=request.getParameter("contacts");//获取联系人
+		String supplierName=new String(request.getParameter("supplierName").getBytes("ISO-8859-1"),"UTF-8"); //获取供应商名称
+		String contacts=new String(request.getParameter("contacts").getBytes("ISO-8859-1"),"UTF-8") ;//获取联系人
 		String telnumber=request.getParameter("telnumber");//获取联系方式
-		String address=request.getParameter("address");//获取省份
-		String moreAdd=request.getParameter("extra");//获取详细地址
+		String address=new String(request.getParameter("address").getBytes("ISO-8859-1"),"UTF-8") ;//获取省份
+		String moreAdd=new String(request.getParameter("moreAdd").getBytes("ISO-8859-1"),"UTF-8") ;//获取详细地址
 		
-		int supplierID=Integer.getInteger(supplierid);
+		int supplierID=Integer.parseInt(supplierid);
 		try {
 			//修改供应商信息
 			purchase.updateSupplier(supplierID, supplierName, contacts, telnumber, address, moreAdd);

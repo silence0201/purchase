@@ -276,7 +276,10 @@ public class Purchase {
 		public void updateSupplierItem(int supplierid,String itemname,String quality,String statement,double account) throws Exception{
 			String itemid=this.getItemID(itemname,account);
 			String sql="UPDATE relationship SET Quality='"+quality+"',Statement='"+statement+"'"
-					+" WHERE SupplierID="+supplierid+" AND ItemID='"+itemname+"'";
+					+" WHERE SupplierID="+supplierid+" AND ItemID='"+itemid+"'";
+			db.update(sql);
+			sql = "UPDATE `item` SET `item`.`Unitprice` = "+account
+					+ " WHERE `item`.`ItemID` = '"+itemid+"' " ;
 			db.update(sql);
 		}
 		//删除供应商以及供应商所有商品信息

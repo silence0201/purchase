@@ -30,7 +30,7 @@
                 	alert("你输入的订单ID有误")
                 }else{
                 	var s = response.split(",") ;
-                	if(s[3] == "未采购"){
+                	if(s[3] == "需采购"){
                 		itemID.value = s[0] ;
                 		number.value = s[1] ;
                 		account.value = s[2] ;

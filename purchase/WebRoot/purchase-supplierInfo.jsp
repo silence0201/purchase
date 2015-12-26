@@ -53,6 +53,10 @@ String userName = (String)session.getAttribute("userName") ;
 			var supplierID = document.getElementById("supplierID").innerHTML ;
 			window.location.href = "purchase-supplierInfo-modify.jsp?supplierID="+supplierID ;
 		}
+		function modifyItem(){
+			var supplierID = document.getElementById("supplierID").innerHTML ;
+			window.location.href = "purchase-supplierInfo-modifyItem.jsp?supplierID="+supplierID ;
+		}
 	</script>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
 	<script src="js/jquery-1.3.min.js" type="text/javascript"></script>
@@ -136,7 +140,7 @@ String userName = (String)session.getAttribute("userName") ;
 				</tbody>
 			</table>
 			<hr />
-			<h3>详细地址</h3>
+  	 		<h3>详细地址</h3>
 			<div class="jumbotron">
   				<p><%=sp.getMoreAdd() %></p>
 			</div>
@@ -145,6 +149,8 @@ String userName = (String)session.getAttribute("userName") ;
 			<button type="button" class="btn btn-primary" onclick="modify()">修改信息</button>
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<button type="button" class="btn btn-primary" onclick="addItem()">增加商品</button>
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<button type="button" class="btn btn-primary" onclick="modifyItem()">修改商品</button>
 			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			<button type="button" class="btn btn-primary" onclick="delItem()">删除商品</button>
 		</div>

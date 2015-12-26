@@ -27,21 +27,10 @@
                 var response= res.getElementsByTagName("response")[0].firstChild.nodeValue;
                 //alert(response) ;
                 if(response == 0){
-                	alert("你输入的申请单ID有误") ;
                 }else{
-                	var s = response.split(",") ;
-                	if(s[5] == "到货"){
-                    	itemID.value = s[0] ;
-                    	price.value = s[1] ;
-                    	number.value = s[2] ;
-                    	account.value = s[3] ;
-                    	requestManID.value = s[4] ;
-                	}else{
-                		alert("你订货单的状态是"+s[5]+"，不符合要求") ;
-                	}
-                	
+                	price.value =response ;
+                	price.readOnly = true ;
                 }
-                
                }
          }
        }
@@ -58,12 +47,7 @@
         //开始调用Ajax的功能
        function setInfo()
        {
-    	   var requestID = document.getElementById("requestID") ;
-    	   var requestManID = document.getElementById("requestManID") ;
-    	   var itemID = document.getElementById("itemID") ;
+    	   var itemName = document.getElementById("itemName") ;
     	   var price = document.getElementById("price") ;
-    	   var number = document.getElementById("number") ;
-    	   var account = document.getElementById("account") ;
-    	   sendRequest("GetInfoByRequestID?requestID="+requestID.value); 
+    	   sendRequest("GetInfoByItemName?itemName="+itemName.value); 
        }
-       

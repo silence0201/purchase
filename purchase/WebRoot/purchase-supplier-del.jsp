@@ -40,11 +40,12 @@ String userName = (String)session.getAttribute("userName") ;
 		function supplierInfo(val){
 			window.location.href = "purchase-supplierInfo.jsp?supplierID="+val ;
 		}
-		function add(){
-			window.location.href = "purchase-supplier-add.jsp" ;
-		}
 		function del(){
-			window.location.href = "purchase-supplier-del.jsp" ;
+			var supplierID = document.getElementById("supplierID") ;
+			window.location.href = "DeleteSupplier?supplierID="+supplierID.value ;
+		}
+		function reset(){
+			document.getElementById("reset").click() ;
 		}
 	</script>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -142,14 +143,13 @@ String userName = (String)session.getAttribute("userName") ;
 						<div class="jumbotron">
   								<p id="moreAdd"></p>
 						</div>
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<br />
-						<br />
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="submit" value="删除">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="reset" value="清空">
+						<input type="reset" id="reset" style="display: none;" />
 					</form>
+					<hr />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button type="button" class="btn btn-primary" onclick="del()">删除</button>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button type="button" class="btn btn-primary" onclick="reset()">清空</button>
 				</div>
 		</div>
 		<div id="side_div1">

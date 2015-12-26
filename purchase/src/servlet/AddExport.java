@@ -54,7 +54,6 @@ public class AddExport extends HttpServlet {
 		try {
 			count = DataTool.getItemCount(itemID)-number;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

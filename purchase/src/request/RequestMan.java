@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import data.DBUtil;
+import data.DataTool;
 
 //这是申请员的功能处理界面
 public class RequestMan {
@@ -33,7 +34,7 @@ public class RequestMan {
 	public void setRequestNotices() throws Exception{
 		String sql = "select `request`.`RequestID`,`item`.`Itemname`,`request`.`Number`,`request`.`Requeststatement`,`Requesttime` "
 				+ "from `request`,`item`  "
-				+ "where `request`.`ItemID` = `item`.`ItemID` AND `request`.`Requeststatement` in ('通过','完成','拒绝') "
+				+ "where `request`.`ItemID` = `item`.`ItemID` AND `request`.`Requeststatement` in ('通过','完成','拒绝','到货') AND `request`.`RequestmanID` = '"+userID+"' "
 				+ "order by `Requesttime` desc " ;
 		
 		ResultSet rs = db.select(sql) ;
@@ -93,6 +94,23 @@ public class RequestMan {
 	
 	public ArrayList<Request> getRequests(){
 		return requests ;
+	}
+	
+	public void setStatus() throws Exception{
+		String sql = "SELECT `RequestID`,`DemandlistID` FROM `request` "
+				+ "WHERE `request`.`DemandlistID` IS NOT NULL " ;
+		ResultSet rs = db.select(sql) ;
+		while(rs.next()){
+			String requestID = rs.getString(1) ;
+			String demandID = rs.getString(2) ;
+			String status = DataTool.getStatusOfDemand(demandID) ;
+			if("有货".equals(status)){
+				String change = "UPDATE `request` SET `request`.`Requeststatement` = '到货' "
+						+ "WHERE `request`.`RequestID` = '"+requestID+"' " ;
+				db.update(change);
+			}
+			
+		}
 	}
 	
 }

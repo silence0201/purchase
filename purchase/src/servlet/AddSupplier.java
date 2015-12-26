@@ -30,6 +30,7 @@ public class AddSupplier extends HttpServlet {
 		//DBUtil db = new DBUtil() ;
 		Purchase purchase=new Purchase();
 		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("utf-8");
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
 		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
@@ -37,7 +38,7 @@ public class AddSupplier extends HttpServlet {
 		String contacts=request.getParameter("contacts");//获取联系人
 		String telnumber=request.getParameter("telnumber");//获取联系方式
 		String address=request.getParameter("address");//获取省份
-		String moreAdd=request.getParameter("extra");//获取详细地址
+		String moreAdd=request.getParameter("moreAdd");//获取详细地址
 		
 		try {
 			//添加新供应商

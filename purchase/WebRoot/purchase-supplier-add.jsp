@@ -41,10 +41,10 @@ String userName = (String)session.getAttribute("userName") ;
 			window.location.href = "purchase-supplierInfo.jsp?supplierID="+val ;
 		}
 		function add(){
-			window.location.href = "purchase-supplier-add.jsp" ;
+			document.getElementById("submit").click() ;
 		}
-		function del(){
-			window.location.href = "purchase-supplier-del.jsp" ;
+		function reset(){
+			document.getElementById("reset").click() ;
 		}
 	</script>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -108,7 +108,7 @@ String userName = (String)session.getAttribute("userName") ;
 					<h3 style="text-align: center;">请输入供应商信息</h3>
 					<hr />
 
-					<form action="">
+					<form action="AddSupplier" method="post">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="supplierName">供应商名称&nbsp;</label>
 						<input type="text" id="supplierName" name="supplierName">
@@ -134,15 +134,16 @@ String userName = (String)session.getAttribute("userName") ;
 	  					<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<textarea rows="8" cols="80%" id="extra" style="margin-left: 39px;"></textarea>
+						<textarea rows="8" cols="80%"  style="margin-left: 39px;" name="moreAdd"></textarea>
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<br />
-						<br />
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="submit">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="reset" value="清空">
+						<input type="submit" id="submit" style="display: none;" />
+						<input type="reset" id="reset" style="display: none;" />
 					</form>
+					<hr />
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button type="button" class="btn btn-primary" onclick="add()">添加</button>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<button type="button" class="btn btn-primary" onclick="reset()">清空</button>
 				</div>
 		</div>
 		<div id="side_div1">

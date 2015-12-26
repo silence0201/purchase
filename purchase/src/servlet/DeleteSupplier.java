@@ -30,7 +30,7 @@ public class DeleteSupplier extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
-		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("<HEAD><TITLE>A Servlet</TITLE></HEAD>");
 		String supplierid=request.getParameter("supplierID");//获取供应商id
 		int supplierID=Integer.parseInt(supplierid);
 		

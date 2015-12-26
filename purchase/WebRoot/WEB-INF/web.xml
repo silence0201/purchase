@@ -73,11 +73,14 @@
     <servlet-name>UpdateSupplierItem</servlet-name>
     <servlet-class>servlet.UpdateSupplierItem</servlet-class>
   </servlet>
-
-
-
-
-
+  <servlet>
+    <servlet-name>GetInfoByItemName</servlet-name>
+    <servlet-class>servlet.GetInfoByItemName</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddOrder</servlet-name>
+    <servlet-class>servlet.AddOrder</servlet-class>
+  </servlet>
 
 
 
@@ -138,7 +141,7 @@
     <servlet-name>GetInfoByItemID</servlet-name>
     <url-pattern>/GetInfoByItemID</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
+    <servlet-mapping>
     <servlet-name>AddSupplier</servlet-name>
     <url-pattern>/AddSupplier</url-pattern>
   </servlet-mapping>
@@ -161,6 +164,14 @@
   <servlet-mapping>
     <servlet-name>UpdateSupplierItem</servlet-name>
     <url-pattern>/UpdateSupplierItem</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetInfoByItemName</servlet-name>
+    <url-pattern>/GetInfoByItemName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddOrder</servlet-name>
+    <url-pattern>/AddOrder</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

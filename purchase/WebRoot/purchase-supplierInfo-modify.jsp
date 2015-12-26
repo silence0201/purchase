@@ -41,17 +41,12 @@ String userName = (String)session.getAttribute("userName") ;
 			CookieUtil.unset("userID") ;
 			CookieUtil.unset("password") ;
 		}
-		function addItem(){
-			var supplierID = document.getElementById("supplierID").innerHTML ;
-			window.location.href = "purchase-supplierInfo-addItem.jsp?supplierID="+supplierID ;
+		function modify() {
+			document.getElementById("submit").click() ;
 		}
-		function delItem(){
-			var supplierID = document.getElementById("supplierID").innerHTML ;
-			window.location.href = "purchase-supplierInfo-delItem.jsp?supplierID="+supplierID ;
-		}
-		function modify(){
-			var supplierID = document.getElementById("supplierID").innerHTML ;
-			window.location.href = "purchase-supplierInfo-modify.jsp?supplierID="+supplierID ;
+		
+		function clear(){
+			document.getElementById("reset").click() ;
 		}
 	</script>
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -117,26 +112,26 @@ String userName = (String)session.getAttribute("userName") ;
 			<div class="form">
 					<h3 style="text-align: center;">请修改供应商信息</h3>
 					<hr />
-					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-					<label for="supplierID">供应商ID&nbsp;&nbsp;&nbsp;</label>
-					<input type="text" id="supplierID" name="supplierID" onchange="setInfo()">
-					<br />
-					<hr />
-					<form action="">
+					<form action="UpdateSupplier" method="post" >
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<label for="supplierID">供应商ID&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" id="supplierID" name="supplierID" readonly="readonly" value="<%=supplierID %>">
+						<br />
+						<hr />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="supplierName">供应商名称&nbsp;</label>
-						<input type="text" id="supplierName" name="supplierName">
+						<input type="text" id="supplierName" name="supplierName" value="<%=sp.getSupplierName() %>">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="address">供应商省份</label>
-						<input type="text" id="address" name="address">
+						<input type="text" id="address" name="address" value="<%=sp.getAdd() %>">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="contacts">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" id="contacts" name="contacts">
+						<input type="text" id="contacts" name="contacts" value="<%=sp.getContact() %>">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="telnumber">联系电话&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" id="telnumber" name="telnumber">
+						<input type="text" id="telnumber" name="telnumber" value="<%=sp.getTel() %>">
 						
 						
 						<br />
@@ -148,15 +143,19 @@ String userName = (String)session.getAttribute("userName") ;
 	  					<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<textarea rows="8" cols="80%"  style="margin-left: 39px;" name="moreAdd"></textarea>
+						<textarea rows="8" cols="80%"  style="margin-left: 39px;" name="moreAdd" id="moreAdd"><%=sp.getMoreAdd() %></textarea>
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<br />
-						<br />
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="submit" value="修改">
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<input type="reset" value="清空">
+						<input type="submit" id="submit" style="display: none;">
+						<input type="reset" id="reset" style="display: none;">
+						<hr />
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<button type="button" class="btn btn-primary" onclick="modify()">修改</button>
+						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<button type="button" class="btn btn-primary" onclick="clear()">清空</button>
 					</form>
+					
+
 				</div>
 		</div>
 		<div id="side_div1">
@@ -267,4 +266,9 @@ String userName = (String)session.getAttribute("userName") ;
 		</div>
 	</section>
   </body>
+  <script type="text/javascript">
+  	document.getElementById("supplierID").focus() ;
+  	document.getElementById("supplierID").value = <%=supplierID %> ;
+  	document.getElementById("supplierID").blur() ;
+  </script>
 </html>

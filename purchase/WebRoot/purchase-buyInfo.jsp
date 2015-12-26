@@ -68,7 +68,7 @@ String userName = (String)session.getAttribute("userName") ;
 				<div class="place_driver"></div>
 				<a  href="purchase-notice.jsp">待办事项</a>
 				<div class="place_driver"></div>
-				<a  href="purchase-handle.jsp">需求单查看</a>	
+				<a  href="purchase-handle.jsp?demandID=<%=demandID%>">需求单查看</a>	
 				<div class="place_driver"></div>
 				<a  class="current" href="#">采购填写</a>	
 			</article>
@@ -98,7 +98,7 @@ String userName = (String)session.getAttribute("userName") ;
 			<header class="notice">
 			<h3>采购信息</h3>
 			</header>
-			<h4>你要采购的需求单：<%=demandID %></h4>
+			<h4>你要采购的需求单：<span id="temp"><%=demandID %></span></h4>
 			<h4>当然用户ID号:<%=userID %></h4>
 			<hr />
 
@@ -106,18 +106,17 @@ String userName = (String)session.getAttribute("userName") ;
 					<h3 align="center">
 					请输入采购单的详细信息</h3>
 					<hr />
-					<form action="">
+					<form action="AddOrder">
+						<label for="orderID" style="display: none">采购单ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" id="orderID" name="orderID" style="display: none">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="orderID">采购单ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" id="orderID" name="orderID" >
-						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<label for="demandID">需求单ID&nbsp;&nbsp;</label>
-						<input type="text" id="demandID" name="demandID" onchange="setInfo()">
+						<label for="demandID">需求单ID&nbsp;&nbsp;&nbsp;&nbsp;</label>
+						<input type="text" id="demandID" name="demandID" onchange="setInfo()" value="   ">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="itemID">需求物品ID&nbsp;&nbsp;</label>
-						<input type="text" id="itemID" name="itemID" readonly="readonly">
+						<input type="text" id="itemID" name="itemID" readonly="readonly" >
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="number">数量&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" id="number" name="number" readonly="readonly">
@@ -265,4 +264,7 @@ String userName = (String)session.getAttribute("userName") ;
 		</div>
 	</section>
   </body>
+  <script type="text/javascript">
+  		document.getElementById("demandID").value = document.getElementById("temp").innerHTML.split('<')[0];
+  </script>
 </html>
