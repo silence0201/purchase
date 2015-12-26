@@ -49,6 +49,37 @@
     <servlet-name>GetInfoByItemID</servlet-name>
     <servlet-class>servlet.GetInfoByItemID</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddSupplier</servlet-name>
+    <servlet-class>servlet.AddSupplier</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteSupplier</servlet-name>
+    <servlet-class>servlet.DeleteSupplier</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateSupplier</servlet-name>
+    <servlet-class>servlet.UpdateSupplier</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddSupplierItem</servlet-name>
+    <servlet-class>servlet.AddSupplierItem</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteSupplierItem</servlet-name>
+    <servlet-class>servlet.DeleteSupplierItem</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UpdateSupplierItem</servlet-name>
+    <servlet-class>servlet.UpdateSupplierItem</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +137,30 @@
   <servlet-mapping>
     <servlet-name>GetInfoByItemID</servlet-name>
     <url-pattern>/GetInfoByItemID</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddSupplier</servlet-name>
+    <url-pattern>/AddSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteSupplier</servlet-name>
+    <url-pattern>/DeleteSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateSupplier</servlet-name>
+    <url-pattern>/UpdateSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddSupplierItem</servlet-name>
+    <url-pattern>/AddSupplierItem</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteSupplierItem</servlet-name>
+    <url-pattern>/DeleteSupplierItem</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateSupplierItem</servlet-name>
+    <url-pattern>/UpdateSupplierItem</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

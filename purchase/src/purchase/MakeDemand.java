@@ -10,6 +10,9 @@ import data.DBUtil;
 
 public class MakeDemand {
 	private DBUtil db;
+	//用于生成订单
+	private MakeOrder MO;
+	private String userID;
 	//
 	private String myItemID;//商品id
 	private int number;//同一个需求单上的商品总数量
@@ -22,7 +25,9 @@ public class MakeDemand {
 	
 	public MakeDemand(){
 		db = new DBUtil() ;
-
+		MO=new MakeOrder();
+		this.userID="";
+		
 		this.demandTime="";
 		this.startTime="";
 		this.endTime="";
@@ -164,6 +169,9 @@ public class MakeDemand {
 				this.updateDemandStatus(this.getDemandID(),this.myItemID,this.number);
 			}
 		}
+		//需求单生成后 进而生成订单
+		MO.setUserID(userID);
+		MO.setOrder();
 	}
 	//获取 生成需求单后该需求单的单号
 	public int getDemandID() throws Exception{
@@ -213,5 +221,9 @@ public class MakeDemand {
 
 	public String getEndTime() {
 		return endTime;
-	}	
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}		
 }

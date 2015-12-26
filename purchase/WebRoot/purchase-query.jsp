@@ -210,13 +210,7 @@ String userName = (String)session.getAttribute("userName") ;
 			 	<h3>最近统计</h3>
 			 </header>
 			 <%
-			 	 statistics.getRequest();
 			 	 statistics.getStatistics();
-
-			 	 Date dnow = new Date(); 
-				 if(statistics.getClear(dnow.getDate())){ 
-				 	statistics.clearStatistics();
-				 }
 			 %>
 			 <p style="font-size: 1.8em;text-align: center;">采购统计</p>
 			 <hr />

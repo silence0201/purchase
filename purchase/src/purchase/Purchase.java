@@ -208,7 +208,7 @@ public class Purchase {
 	}
 	
 	//获取商品id
-		public String getItemID(String itemname) throws Exception{
+		public String getItemID(String itemname,double account) throws Exception{
 			String itemid="";
 			String sql="SELECT item.ItemID"
 					+" FROM item"
@@ -218,15 +218,15 @@ public class Purchase {
 				itemid=rs.getString(1);
 			}
 			//不存在改商品则初始化一个
-			if(itemid==""){
-				itemid=this.insertItem(itemname);
+			if(itemid==""&&account!=-1){
+				itemid=this.insertItem(itemname,account);
 				
 			}
 			return itemid;
 		}
 
 		//添加商品
-		public String insertItem(String itemname) throws Exception{
+		public String insertItem(String itemname,double account) throws Exception{
 			String itemid="";
 			String sql="SELECT MAX(ItemID)"
 					+" FROM item";
@@ -247,7 +247,7 @@ public class Purchase {
 				itemid="B"+itemid;
 			}
 			String Sql="INSERT INTO item(ItemID,ItemName,Unitprice,ItemsInventory)"
-					+" VALUES('"+itemid+"','"+itemname+"',-1,0)";
+					+" VALUES('"+itemid+"','"+itemname+"',"+account+",0)";
 			db.insert(Sql);
 			return itemid;
 		}
@@ -259,8 +259,8 @@ public class Purchase {
 			db.insert(sql);
 		}
 		//现有供应商添加提供商品
-		public void insertSupplierItem(int supplierid,String itemname,String quality,String statement) throws Exception{
-			String itemid=this.getItemID(itemname);
+		public void insertSupplierItem(int supplierid,String itemname,String quality,String statement,double account) throws Exception{
+			String itemid=this.getItemID(itemname,account);
 			String sql="INSERT INTO relationship(SupplierID,ItemID,Quality,Statement)"
 					+" VALUES("+supplierid+",'"+itemid+"','"+quality+"','"+statement+"')";
 			db.insert(sql);
@@ -273,8 +273,8 @@ public class Purchase {
 			db.update(sql);
 		}
 		//修改供应商商品信息
-		public void updateSupplierItem(int supplierid,String itemname,String quality,String statement) throws Exception{
-			String itemid=this.getItemID(itemname);
+		public void updateSupplierItem(int supplierid,String itemname,String quality,String statement,double account) throws Exception{
+			String itemid=this.getItemID(itemname,account);
 			String sql="UPDATE relationship SET Quality='"+quality+"',Statement='"+statement+"'"
 					+" WHERE SupplierID="+supplierid+" AND ItemID='"+itemname+"'";
 			db.update(sql);
@@ -290,13 +290,13 @@ public class Purchase {
 		}
 		//删除供应商某一商品信息
 		public void deleteSupplierItem(int supplierid,String itemname) throws Exception{
-			String itemid=this.getItemID(itemname);
+			String itemid=this.getItemID(itemname,-1);
 			String sql="DELETE FROM relationship"
 					+" WHERE SupplierID='"+supplierid+"' AND ItemID='"+itemid+"'";
 			db.delete(sql);
-			sql="DELETE FROM item"
-			+" WHERE ItemID='"+itemid+"' AND Unitprice=-1";
-			
+			//sql="DELETE FROM item"
+			//+" WHERE ItemID='"+itemid+"' AND Unitprice=-1";
+			//db.delete(sql);
 		}
 
 }

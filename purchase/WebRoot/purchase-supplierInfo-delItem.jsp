@@ -147,18 +147,18 @@ String userName = (String)session.getAttribute("userName") ;
 					<form action="">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="itemName">物品名称&nbsp;</label>
-						<input type="text" id="itemName" name="itemName" readonly="readonly">
+						<input type="text" id="itemName" name="itemName">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="price">物品单价</label>
-						<input type="text" id="price" name="price" readonly="readonly">
+						<input type="text" id="price" name="price">
 						<br />
 						<br />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="quality">物品质量&nbsp;</label>
-						<input type="text" id="quality" name="quality" readonly="readonly">
+						<input type="text" id="quality" name="quality">
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<label for="test">物品状态&nbsp;</label>
-						<input type="text" id="test" name="test" readonly="readonly">
+						<input type="text" id="test" name="test">
 						<br />
 						<hr />
 						<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

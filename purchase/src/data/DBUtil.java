@@ -24,11 +24,11 @@ public class DBUtil {
 		Class.forName("com.mysql.jdbc.Driver") ;
 
 		//数据库连接URL
-		String url = "jdbc:mysql://127.0.0.1:3306/kuguan?useUnicode=true&characterEncoding=utf-8";
+		String url = "jdbc:mysql://127.0.0.1:3306/kuguan_2015-12-06?useUnicode=true&characterEncoding=utf-8";
 		//数据库用户名
 		String user = "root";
 		//数据库密码
-		String password = "root";
+		String password = "1234";
 		//根据数据库参数取得一个数据库连接
 	    conn = DriverManager.getConnection(url, user, password);
 		return conn;

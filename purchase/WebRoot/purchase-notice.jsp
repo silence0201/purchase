@@ -17,9 +17,12 @@ String userName = (String)session.getAttribute("userName") ;
 
 %>
 <jsp:useBean id="purchase" class="purchase.Purchase" scope="page"></jsp:useBean>
+<jsp:useBean id="md" class="purchase.MakeDemand" scope="page"></jsp:useBean>
 <%
 	String userID = (String)session.getAttribute("userID") ;
 	purchase.setUserID(userID) ;
+	//生成需求单
+	md.setDemand();
  %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
