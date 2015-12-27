@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import request.Statistics;
 import data.DBUtil;
 import data.DataTool;
 
@@ -30,6 +31,7 @@ public class UpdateRequest extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		DBUtil db = new DBUtil() ;
+		Statistics statistics=new Statistics();
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
@@ -50,15 +52,17 @@ public class UpdateRequest extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//获取商品单价
+		//获取商品单价原来总价
 		double unitPrice=0;//单价
-		String sql="SELECT item.Unitprice"
-				+ " FROM item"
-				+ " WHERE item.ItemID='"+itemID+"'";
+		double oldAccount=0;
+		String sql="SELECT request.Totalaccount,item.Unitprice"
+				+ " FROM request,item"
+				+ " WHERE request.ItemID=item.ItemID AND request.RequestID='"+requestID+"'";
 		try {
 			ResultSet rs = db.select(sql);
 			while(rs.next()){
-				unitPrice=rs.getDouble(1);
+				unitPrice=rs.getDouble(2);
+				oldAccount=rs.getDouble(1);
 			}
 		} catch (Exception e) {
 			// TODO 自动生成的 catch 块
@@ -67,11 +71,13 @@ public class UpdateRequest extends HttpServlet {
 		String u = request.getHeader("referer") ;
 		//修改申请单信息
 		int num=Integer.parseInt(number);//String->int
-		double totalAccount = num*unitPrice;
+		double newAccount = num*unitPrice;
 		if("未审核".equals(status)){
-			sql="UPDATE request SET ItemID='"+itemID+"',Number='"+num+"',Totalaccount='"+totalAccount+"'"
+			sql="UPDATE request SET ItemID='"+itemID+"',Number='"+num+"',Totalaccount='"+newAccount+"'"
 					+ " WHERE RequestID='"+requestID+"' AND Requeststatement='未审核'";
 			try {
+				statistics.setUserID(userID);
+				statistics.UpdateStatistics(oldAccount, newAccount);
 				db.update(sql);
 				//后续代码
 				

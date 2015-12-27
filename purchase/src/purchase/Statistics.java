@@ -51,7 +51,7 @@ public class Statistics {
 		
 		String sql="SELECT DemandID,IsStatistics"
 				+" FROM `order`"
-				+" WHERE IsStatistics=0 AND Ordertime LIKE '"+yearMonth+"-%'";
+				+" WHERE orderManID='"+this.userID+"' AND IsStatistics=0 AND Ordertime LIKE '"+yearMonth+"-%'";
 		ResultSet rs = db.select(sql) ;
 		while(rs.next()){
 			if(rs.getInt(2)==0){
@@ -119,7 +119,7 @@ public class Statistics {
 		db.update(sql);
 	}
 				
-	//从purchasecount读取
+	//从purchasecount读取(外部调用)
 	public void getStatistics() throws Exception{
 		//判断是否需要统计清零
 		String myday=this.getTime().substring(8);

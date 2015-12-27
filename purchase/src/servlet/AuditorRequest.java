@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import request.Statistics;
 import data.DBUtil;
 
 public class AuditorRequest extends HttpServlet {
@@ -31,6 +33,7 @@ public class AuditorRequest extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		DBUtil db = new DBUtil() ;
+		Statistics statistics=new Statistics();
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<HTML>");
@@ -44,9 +47,34 @@ public class AuditorRequest extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String auditorTime=sdf.format(dnow) ;			  //获取审核时间
 		
-		String sql="UPDATE request SET AuditorID='"+userID+"',Requeststatement='"+status+"',Audittime='"+auditorTime+"'"
-				+" WHERE RequestID="+requestID;
+		String sql="SELECT RequestmanID"
+				+" FROM request"
+				+"　WHERE RequestID='"+requestID+"' AND AuditorID is NULL";
+		String RequestmanID="";		
+		ResultSet rs;
+
+		if("拒绝".equals(status)){
+			double account=0;
+			sql="SELECT Totalaccount,RequestmanID"
+					+" FROM request"
+					+" WHERE RequestID="+requestID;
+			try {
+				rs = db.select(sql) ;
+				while(rs.next()){
+					account=rs.getDouble(1);
+					RequestmanID=rs.getString(2);
+				}
+				statistics.setUserID(RequestmanID);
+				statistics.UpdateRefuseStatistics(account);
+			} catch (Exception e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		
 		try {
+			sql="UPDATE request SET AuditorID='"+userID+"',Requeststatement='"+status+"',Audittime='"+auditorTime+"'"
+					+" WHERE RequestID="+requestID;
 			db.update(sql);
 			String u = request.getHeader("referer") ;
 			String s = " <script type='text/javascript'>alert('您的审核已经提交成功');" ;

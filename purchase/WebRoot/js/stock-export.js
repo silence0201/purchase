@@ -30,14 +30,14 @@
                 	alert("你输入的申请单ID有误") ;
                 }else{
                 	var s = response.split(",") ;
-                	if(s[5] == "到货"){
+                	if(s[5] == "通过"){
                     	itemID.value = s[0] ;
                     	price.value = s[1] ;
                     	number.value = s[2] ;
                     	account.value = s[3] ;
                     	requestManID.value = s[4] ;
                 	}else{
-                		alert("你订货单的状态是"+s[5]+"，不符合要求") ;
+                		alert("你输入的订单已经完成") ;
                 	}
                 	
                 }

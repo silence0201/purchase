@@ -63,7 +63,6 @@ String userName = (String)session.getAttribute("userName") ;
 				<%
 					int count = 0 ;
 					String[] s = new String[100] ;
-					requestMan.setStatus() ;
 					requestMan.setRequestNotices() ;
 					ArrayList<RequestNotice> requestNotices = requestMan.getRequestNotices() ;
 					

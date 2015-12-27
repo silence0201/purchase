@@ -240,12 +240,12 @@ String userName = (String)session.getAttribute("userName") ;
 			 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			 <!-- 此处显示的是不论申请单通过与否还是未审核的累计次数，若仅显示通过的累计次数则用statistics.getRealCount() -->
 			 <label style="font-size: 1.3em">累计申请次数:</label>
-			 <input type="text" readonly="readonly" value="<%=statistics.getCount() %>">
+			 <input type="text" readonly="readonly" value="<%=statistics.getRealCount() %>">
 			 <hr />
 			 <!-- 此处显示的是不论申请单通过与否还是未审核的累计金额，若仅显示通过的累计金额则用statistics.getRealAccount() -->
 			 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			 <label style="font-size: 1.3em">累计申请金额:</label>
-			 <input type="text" readonly="readonly" value="<%=statistics.getRequestAccount() %>">
+			 <input type="text" readonly="readonly" value="<%=statistics.getRealAccount() %>">
 			 <hr />
 			 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			 <label style="font-size: 1.3em">本月剩余金额:</label>

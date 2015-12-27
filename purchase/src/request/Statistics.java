@@ -39,6 +39,7 @@ public class Statistics {
 	}
 	//更新数据库数据
 	public void setStatistics(double account) throws Exception{
+		this.getStatistics();
 		this.count++;
 		this.realCount++;
 		this.requestAccount+=account;
@@ -49,36 +50,41 @@ public class Statistics {
 				+ " WHERE UserID='"+userID+"'";
 		db.update(sql);	
 	}
-	//realAccount默认为申请单通过  此函数用于修改不通过的情况(jsp并未调用该函数)
-	public void changeRealAccount(double account) throws Exception{
-		//取realaccount
-		String sql = "SELECT requestcount.RealAccount"
-				+" FROM requestcount"
-				+" WHERE requestcount.UserID='"+userID+"'";
-		ResultSet rs = db.select(sql) ;
-		while(rs.next()){
-			this.setRealAccount(rs.getDouble(1));
-		}
-		//存realaccount
-		this.realAccount-=account;
-		String sql2 = "UPDATE requestcount"
-				+ " SET requestcount.RealAccount="+this.realAccount
+	//更改申请单数量修改后的统计
+	public void UpdateStatistics(double oldAccount,double newAccount) throws Exception{
+		this.getStatistics();
+		double account=newAccount-oldAccount;
+		this.realAccount+=account;
+		this.remainAccount-=account;
+		String sql = "UPDATE requestcount"
+				+ " SET requestcount.RealAccount="+this.realAccount+",requestcount.RemainAccount="+this.remainAccount
 				+ " WHERE UserID='"+userID+"'";
 		db.update(sql);	
 	}
+	
+	//更改申请单被拒后的统计
+	public void UpdateRefuseStatistics(double account) throws Exception{
+		this.getStatistics();
+		this.changeRealAccount(account);
+		this.changeRealCount();
+	}
+	
+	//realAccount默认为申请单通过  此函数用于修改不通过的情况(jsp并未调用该函数)
+	public void changeRealAccount(double account) throws Exception{
+		//存realaccount
+		this.realAccount-=account;
+		this.remainAccount+=account;
+		String sql = "UPDATE requestcount"
+				+ " SET requestcount.RealAccount="+this.realAccount+",requestcount.RemainAccount="+this.remainAccount
+				+ " WHERE UserID='"+userID+"'";
+		db.update(sql);	
+	}
+		
 	//realcount默认为申请单通过  此函数用于修改不通过的情况(jsp并未调用该函数)
-	public void changeRealCount(double count) throws Exception{
-		//取realcount
-		String sql = "SELECT requestcount.RealCount"
-				+" FROM requestcount"
-				+" WHERE requestcount.UserID='"+userID+"'";
-		ResultSet rs = db.select(sql) ;
-		while(rs.next()){
-			this.setRealAccount(rs.getDouble(1));
-		}
+	public void changeRealCount() throws Exception{
 		//存realcount
-		this.realCount-=count;
-		String sql2 = "UPDATE requestcount"
+		this.realCount-=1;
+		String sql = "UPDATE requestcount"
 				+ " SET requestcount.RealCount="+this.realCount
 				+ " WHERE UserID='"+userID+"'";
 		db.update(sql);	

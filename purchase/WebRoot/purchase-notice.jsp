@@ -95,7 +95,7 @@ String userName = (String)session.getAttribute("userName") ;
 			 	while(requestNoticeIterator.hasNext()){
 			 		RequestNotice rn = requestNoticeIterator.next() ;
 			 		s[count] = "<p class='bg-info noticeCon'>" ;
-			 		s[count] += "你有需求单号为<a onclick='handler(this.innerHTML)'>"+rn.getRequestID()+"</a>的需求单需要审核" ;
+			 		s[count] += "你有申请单号为<a onclick='handler(this.innerHTML)'>"+rn.getRequestID()+"</a>的需求单需要审核" ;
 					s[count] += "</p>" ;
 					count++ ;
 			 	}
